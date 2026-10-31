@@ -27,7 +27,7 @@ class GazeboMission(ControlReplay):
     def __init__(self,duration):
         h=allocate_history(duration)
         super().__init__(h,len(h['time']),node_name='safe_redcho_distributed_gazebo',
-            initial_message='Waiting for six fresh control agents and a fresh, paused mission_world')
+            initial_message=f'{scenario.IMPLEMENTATION_VERSION}: waiting for six fresh control agents and a fresh, paused mission_world')
         self.h=h;self.metadata=mission_metadata(duration)
         self.client=self.create_client(StepSwarm,'/safe_redcho/step')
         self.phase='waiting';self.future=None
@@ -161,7 +161,7 @@ def main():
         state_log_end_time=float(h['time'][-1]) if node.completed else None,
         checks=summary['checks'] if summary else {},error=node.error,
         ROS_DOMAIN_ID=os.environ.get('ROS_DOMAIN_ID','0'),wall_duration=time.perf_counter()-node.start,
-        scope='Closed-loop Gazebo; six independent local battery/SVF/REDCHO/QP/geometric controllers; coordinator handles transport, stepping and diagnostics')
+        scope='Closed-loop Gazebo; six local controllers with velocity REDCHO, position/height REDCHO and HOCBF-QP; coordinator handles transport, stepping and diagnostics')
     try:
         (args.output/'mission_status.json').write_text(json.dumps(report,indent=2))
         print(json.dumps(report,indent=2))

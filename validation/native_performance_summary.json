@@ -7,38 +7,38 @@
   "L_ic": 0.0,
   "L_R_star": 24.726414611363452,
   "L": 27.43,
-  "max_svf_derivative": 4.732037116177517,
-  "levant_svf_jerk_tv_ratio": 1139.7439469275405,
+  "max_svf_derivative": 4.73203924004329,
+  "levant_svf_jerk_tv_ratio": 1139.688611746401,
   "svf_postfault_rms": [
-    1.0995289667602842e-05,
-    0.000281025562876907,
-    0.0022893278635104175
+    1.0998669889737218e-05,
+    0.0002811102297879084,
+    0.002290025468633661
   ],
   "levant_postfault_rms": [
-    0.0009542301970702997,
-    0.014001100053106114,
-    0.36197948871312263
+    0.000954468111493971,
+    0.01400329908950588,
+    0.3619821459631621
   ],
   "min_obstacle_clearance": [
-    1.2963187646293761,
-    1.399461997274516
+    1.2816502976104354,
+    1.2695066431410476
   ],
-  "min_interagent_distance": 0.9142238653097077,
-  "min_row_margin": 0.08710585258330031,
+  "min_interagent_distance": 0.9128896444269523,
+  "min_row_margin": 0.07863439913454377,
   "max_phase1_slack": 0.0,
-  "max_qp_violation": 5.386316392907986e-16,
+  "max_qp_violation": 4.73232564246473e-15,
   "phase1_invocations": 0,
   "agent_steps": 27006,
-  "max_se3_residual": 0.09803472337450733,
+  "max_se3_residual": 0.21538240402629083,
   "peak_accel_slew_motor_utilization": [
-    0.525468353614826,
-    0.999335716733108,
-    0.6789345250808865
+    0.5389883700941733,
+    1.0,
+    0.678448821997936
   ],
-  "max_mean_attitude_error": 0.010225037799695908,
-  "final_observer_error": 7.273622213339966e-08,
-  "final_plant_tracking_error": 0.0001156957730452124,
-  "final_cohesion_error": 9.138425084185292e-07,
+  "max_mean_attitude_error": 0.010241524137410451,
+  "final_observer_error": 7.272754275507059e-08,
+  "final_plant_tracking_error": 0.00010565172868958232,
+  "final_cohesion_error": 0.00012294921182572915,
   "max_all_phase_residual": 0.9709592677750047,
   "plant_residual_scope": "Consecutive free-flight samples; ground contact introduces support forces",
   "checks": {
@@ -47,8 +47,87 @@
     "plant_residual": true,
     "interagent_safety": true,
     "obstacle_clearance": true,
-    "hover_before_forward": true
+    "hover_before_forward": true,
+    "formation_recovered": true,
+    "common_height_recovered": true,
+    "hover_height_recovered": true,
+    "velocity_consensus_recovered": true,
+    "default_scene_progress": true,
+    "recovery_window_obstacle_clear": true,
+    "position_REDCHO_estimation": true,
+    "height_REDCHO_estimation": true,
+    "position_REDCHO_regularity": true,
+    "both_obstacles_in_nominal_path": true,
+    "both_obstacles_require_QP_correction": true
   },
-  "hover_gate_height_error": 0.0002631206395160568,
-  "hover_gate_max_speed": 0.016485693758957115
+  "hover_gate_height_error": 0.0016001931426308236,
+  "hover_gate_max_speed": 0.03251379426389154,
+  "formation_recovery_evaluated": true,
+  "formation_recovery": {
+    "formation_shape_error_hist": 0.012537849032600527,
+    "height_spread_hist": 0.0037676975780955857,
+    "hover_height_error_hist": 0.003699041669000147,
+    "x_alignment_error_hist": 0.011855114492632879,
+    "lateral_spacing_error_hist": 0.0018546452268459745,
+    "velocity_spread_hist": 0.006788466356326741,
+    "window_start": 40.0,
+    "window_end": 45.0,
+    "minimum_x": 10.63208171211613,
+    "pass_x": 6.5,
+    "minimum_obstacle_clearance": 5.250720068318127,
+    "final_shape_error": 0.0008364651160399055,
+    "final_height_error": 0.00024349794322675589
+  },
+  "position_height_REDCHO": {
+    "description": "Distributed average of local position/height references; local physical feedback tracks it",
+    "L": 32.0,
+    "eps": 0.04,
+    "max_regularity_norm": 8.318837339881924,
+    "final_order_error": [
+      2.203964048399509e-06,
+      0.0001201716031258106,
+      0.0009206411683145729
+    ],
+    "final_height_estimation_error": 7.698786042009687e-08
+  },
+  "obstacle_encounters": [
+    {
+      "obstacle": 1,
+      "center": [
+        0.0,
+        -3.5,
+        0.2
+      ],
+      "active_agent_samples": 2676,
+      "active_agents": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "first_active_time": 6.640000000000001,
+      "last_active_time": 15.05,
+      "nominal_reference_min_surface_clearance": 0.22448213756472957,
+      "actual_min_surface_clearance": 1.2816502976104354
+    },
+    {
+      "obstacle": 2,
+      "center": [
+        6.0,
+        2.0,
+        0.2
+      ],
+      "active_agent_samples": 2851,
+      "active_agents": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "first_active_time": 17.16,
+      "last_active_time": 27.23,
+      "nominal_reference_min_surface_clearance": 0.10602359709014308,
+      "actual_min_surface_clearance": 1.2695066431410476
+    }
+  ]
 }

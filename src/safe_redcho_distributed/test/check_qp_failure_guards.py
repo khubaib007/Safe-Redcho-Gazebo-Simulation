@@ -27,7 +27,7 @@ def run():
                 return safe, info
             controller.solve_decentralized_hocbf_qp = corrupted_solver
             try:
-                agent.finish(peers, np.full(6, agent.bound))
+                agent.finish(peers, np.full(6, agent.bound), formation)
             except RuntimeError as exc:
                 assert 'hard QP infeasible' in str(exc) and agent.soc == soc
             else:

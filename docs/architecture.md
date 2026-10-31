@@ -1,6 +1,6 @@
-# Safe REDCHO Velocity: algorithm architecture
+# Safe REDCHO Formation: algorithm architecture
 
-Distributed battery-aware velocity consensus with reciprocal HOCBF-QP.
+Distributed battery-aware velocity consensus and position/height formation with reciprocal HOCBF-QP.
 
 For each of six aircraft:
 
@@ -48,11 +48,16 @@ the SVF/REDCHO path.
 
 ## This edition
 
-The velocity edition has one control-reference REDCHO bank. After takeoff and
-the hover gate, its nominal acceleration tracks the common velocity estimate.
-Position feedback is used during startup only. There is no position/height
-consensus bank or flight formation-restoration term. Collision avoidance may
-change relative positions permanently.
+The formation edition adds a second REDCHO bank. Local horizontal displacement
+references integrate SVF velocities; local height proposals differ and average
+to the desired common height. Each aircraft adds its own initial position to the
+estimated displacement, then applies bounded position feedback alongside
+velocity tracking. This restores the formation after obstacle avoidance.
+
+Position/height REDCHO exchanges displacement estimates with the same two ring
+peers. Its velocity and acceleration outputs also enter reference tracking.
+The formulation permits temporary formation deformation while safety constraints
+are active; it does not require a rigid formation through obstacles.
 
 ## Plant and timing
 

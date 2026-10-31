@@ -19,7 +19,7 @@ bash scripts/test.sh full
 The report appears under `results/tests_<UTC>/test_report.json`. The numerical
 subdirectory contains a full 45-second run and plots. Every evaluated check must
 be true. The release-preparation numerical run observed minimum pair spacing
-approximately 0.914227 m. Exact floating-point values can vary with numerical
+approximately 0.912904 m. Exact floating-point values can vary with numerical
 dependencies; the actual hard-constraint checks remain authoritative.
 
 ## Built interfaces

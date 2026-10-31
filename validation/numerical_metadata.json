@@ -39,6 +39,7 @@
   },
   "duration": 45.0,
   "dt": 0.01,
+  "implementation_version": "redcho-pose-consensus-v2",
   "fault_time": 17.0,
   "fault_agent_id": 2,
   "L_svf": 17.99272824451299,
@@ -57,11 +58,11 @@
   "obstacle_centers": [
     [
       0.0,
-      9.0
+      6.0
     ],
     [
       -3.5,
-      -1.0
+      2.0
     ],
     [
       0.2,
@@ -116,14 +117,47 @@
   ],
   "initial_spacing": 1.0,
   "hover_height": 0.8,
-  "reference": "Source normalized heading times SoC-governed speed; no prescribed bypass or flight position feedback",
+  "reference": "Original velocity REDCHO plus independent distributed position/height REDCHO; local reference tracking before HOCBF-QP",
+  "formation_position_gain": [
+    2.4,
+    2.4,
+    2.4
+  ],
+  "formation_position_accel_cap": [
+    0.8,
+    0.8,
+    1.0
+  ],
+  "formation_ramp_time": 2.0,
+  "height_proposals": [
+    0.78,
+    0.82,
+    0.85,
+    0.75,
+    0.8,
+    0.8
+  ],
+  "position_redcho_L": 32.0,
+  "position_redcho_theta": 1.2,
+  "position_redcho_eps": 0.04,
+  "position_redcho_regularity_certificate": {
+    "reference_position_bound": 40.0,
+    "first_derivative_bound": 1.083750045054786,
+    "second_derivative_bound": 1.6419307110574166,
+    "third_derivative_bound": 8.71520547286875,
+    "local_regularity_bound": 9.662227420885785,
+    "disagreement_bound": 19.32445484177157,
+    "selected_L": 32.0,
+    "scope": "Continuous reference-generator bound; sampled/smoothed REDCHO requires numerical validation"
+  },
+  "matlab_equivalence": "Extension: a second REDCHO reconstructs integrated-position and height references; original safety QP retained",
   "forward_start": 5.0,
   "flight_clock_offset": 5.0,
   "fault_flight_time": 12.0,
-  "startup_controller": "Position/velocity tracking only before flight; no flight position feedback",
+  "startup_controller": "Distributed REDCHO height references during takeoff and flight; original timing and hover gate",
   "solver": "SciPy SLSQP; baseline QP formulation with scenario safety thresholds",
   "plant_backend": "Numerical SE(3) midpoint integrator with a unilateral floor proxy",
   "hardware_target": "Crazyflie 2.1+; MATLAB-derived surrogate parameters",
-  "architecture": "Six independent offboard local controllers; ring REDCHO and shared safety context",
+  "architecture": "Six offboard local controllers, two REDCHO banks each, two ring neighbors per bank; original shared safety context",
   "validation_backend": "Numerical feedback only; no ROS/Gazebo execution"
 }

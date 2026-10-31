@@ -20,7 +20,10 @@ DIAGNOSTIC_KEYS=['SoC_hist','V_batt_hist','v_safe_hist','raw_ref_hist','F_max_hi
  'svf_snap_hist','u_safe_hist','u_motors_hist','P_elec_hist','I_batt_hist','attitude_error_hist',
  'motor_utilization_hist','accel_utilization_hist','slew_utilization_hist','qp_correction_hist',
  'plant_agent_err_hist','qp_phase1_slack_hist','qp_violation_hist','qp_mode_hist',
- 'row_actuator_margin_hist','recursive_feas_margin_hist']
+ 'row_actuator_margin_hist','recursive_feas_margin_hist',
+ 'formation_correction_hist','formation_position_error_hist','formation_velocity_error_hist',
+ 'formation_activation_hist','nominal_acceleration_hist','flight_velocity_target_hist','formation_target_hist',
+ 'pose_local_reference_hist','pose_redcho_estimate_hist','pose_regularity_hist']
 
 
 class ControlReplay(Node):

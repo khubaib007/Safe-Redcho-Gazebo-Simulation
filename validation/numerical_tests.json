@@ -46,15 +46,29 @@
     },
     {
       "command": [
+        "src/safe_redcho_distributed/test/check_redcho_tracking.py"
+      ],
+      "exit_code": 0,
+      "log": "06.log"
+    },
+    {
+      "command": [
+        "src/safe_redcho_distributed/test/check_control_agent_protocol.py"
+      ],
+      "exit_code": 0,
+      "log": "07.log"
+    },
+    {
+      "command": [
         "scripts/numerical.py",
         "--duration",
         "45",
         "--output",
-        "$CHECKOUT/results/tests_20261031T185018_480323Z/numerical",
+        "$CHECKOUT/results/tests_20261031T185018_481015Z/numerical",
         "--plots"
       ],
       "exit_code": 0,
-      "log": "06.log"
+      "log": "08.log"
     }
   ]
 }

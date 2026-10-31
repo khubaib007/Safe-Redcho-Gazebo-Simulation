@@ -67,17 +67,19 @@ def run():
     assert np.allclose(np.asarray(frame.velocities).reshape(3,6),state[1],atol=1e-15)
     agents={i:LocalController(i) for i in range(1,7)}
     prepared={i:a.prepare(1,0.,n.state,np.zeros((3,6))) for i,a in agents.items()}
+    packets={i:a.formation_packet() for i,a in agents.items()}
     for i in range(1,7):
         m=Message();m.agent_id=i;m.cycle=1;m.acceleration_bound=prepared[i][1];n.prepare(i,m)
     for i in range(1,7):
-        a=agents[i];d=a.finish({peer:prepared[peer][0] for peer in neighbors(i)},np.array([prepared[j][1] for j in range(1,7)]))
+        a=agents[i];d=a.finish({peer:prepared[peer][0] for peer in neighbors(i)},np.array([prepared[j][1] for j in range(1,7)]),{peer:packets[peer] for peer in neighbors(i)})
         m=Message();m.agent_id=i;m.cycle=1;m.valid=True;m.detail=json.dumps({'pid':100+i})
         m.safe_acceleration=d['u_safe_hist'];m.motor_forces=d['u_motors_hist'];m.motor_limit=d['F_max_hist']
         m.diagnostics_json=json.dumps({key:np.asarray(d[key]).tolist() for key in DIAGNOSTIC_KEYS})
         if i==6:n.advance();assert len(n.client.requests)==1 # missing last command: no step
         n.receive(i,m)
     assert n.error is None,n.error
-    n.advance();assert n.phase=='step' and len(n.client.requests)==2
+    n.advance();assert n.error is None,n.error
+    assert n.phase=='step' and len(n.client.requests)==2
     forces,limits=n.batch
     assert np.array_equal(np.asarray(n.client.requests[-1].forces).reshape(6,4),forces)
     n.advance();assert n.completed==0 and len(n.pub.messages)==1 # pending response: no next frame

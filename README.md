@@ -1,6 +1,6 @@
-# Safe REDCHO Velocity
+# Safe REDCHO Formation
 
-**Distributed battery-aware velocity consensus with reciprocal HOCBF-QP.** Six simulated Crazyflies, one local controller per aircraft,
+**Distributed battery-aware velocity consensus and position/height formation with reciprocal HOCBF-QP.** Six simulated Crazyflies, one local controller per aircraft,
 two ring neighbors, and a shared plant coordinator. Numerical SE(3) simulation
 and a ROS 2 Jazzy / Gazebo Harmonic backend are included.
 
@@ -11,7 +11,7 @@ and a ROS 2 Jazzy / Gazebo Harmonic backend are included.
 
 The repository starts private for review; authenticate with your GitHub account to clone it until public access is enabled.
 
-**This checkout is `velocity-v0.1.0`.** Each release is a complete workspace. Install
+**This checkout is `formation-v0.1.0`.** Each release is a complete workspace. Install
 different editions into different folders and use separate terminals for their
 ROS overlays. The single-process original baseline is retained as a reference
 comparison; this edition's supported mission is distributed.
@@ -21,8 +21,8 @@ comparison; this edition's supported mission is distributed.
 On Ubuntu 24.04:
 
 ```bash
-git clone --branch velocity-v0.1.0 --depth 1 https://github.com/khubaib007/safe-redcho-simulation.git safe-redcho-velocity
-cd safe-redcho-velocity
+git clone --branch formation-v0.1.0 --depth 1 https://github.com/khubaib007/safe-redcho-simulation.git safe-redcho-formation
+cd safe-redcho-formation
 bash scripts/setup.sh numerical
 bash scripts/verify.sh
 bash scripts/test.sh quick

@@ -17,6 +17,8 @@ def make_plots(h, meta, output):
     from . import scenario
     for i in range(6):
         axs[0].plot(h['p_hist'][0,i],h['p_hist'][1,i],color=colors[i],label=f'cf{i+1}')
+        if 'formation_target_hist' in h:
+            axs[0].plot(h['formation_target_hist'][0,i],h['formation_target_hist'][1,i],color=colors[i],ls=':',lw=.8)
         axs[1].plot(t,h['p_hist'][2,i],color=colors[i])
     from matplotlib.patches import Circle
     for centre in scenario.OBSTACLE_CENTERS.T:
@@ -87,6 +89,44 @@ def make_plots(h, meta, output):
     ar=axs[3].twinx();ar.semilogy(t,np.maximum(h['attitude_error_hist'].mean(axis=0),1e-8),'k',label='Mean attitude error');ar.set_ylabel('Mean ||e_R||')
     lines,labels=axs[3].get_legend_handles_labels();lines2,labels2=ar.get_legend_handles_labels();axs[3].legend(lines+lines2,labels+labels2,fontsize=7)
     finish(fig,'figure_8_battery_cascade.png')
+    fig,axs=plt.subplots(2,2,figsize=(11,8),num='Figure 9: Formation recovery')
+    q=h['p_hist']-scenario.INITIAL_POSITIONS[:,:,None]
+    for i in range(6):
+        axs[0,0].plot(t,q[0,i]-q[0].mean(axis=0),color=colors[i],label=f'cf{i+1}')
+        axs[0,1].plot(t,q[1,i]-q[1].mean(axis=0),color=colors[i])
+        axs[1,0].plot(t,h['p_hist'][2,i],color=colors[i])
+    style(axs[0,0],'(a) Forward alignment relative to centroid','x displacement error [m]')
+    style(axs[0,1],'(b) Original lateral slots relative to centroid','y displacement error [m]')
+    style(axs[1,0],'(c) Height recovery after avoidance','Height [m]')
+    axs[1,0].axhline(scenario.HOVER_HEIGHT,color='k',ls='--',label='Common height target')
+    for key,label in [('formation_shape_error_hist','Maximum pair displacement error'),
+                      ('hover_height_error_hist','Maximum height error')]:
+        axs[1,1].semilogy(t,np.maximum(h[key],1e-9),label=label)
+    axs[1,1].axhline(scenario.FORMATION_POSITION_TOLERANCE,color='k',ls=':',label='Shape tolerance')
+    style(axs[1,1],'(d) Formation recovery metrics','Error [m]')
+    axs[0,0].legend(fontsize=8,ncol=3);axs[1,0].legend(fontsize=8);axs[1,1].legend(fontsize=8)
+    finish(fig,'figure_9_formation_recovery.png')
+    fig,axs=plt.subplots(2,2,figsize=(12,8),num='Figure 10: Distributed position and height REDCHO')
+    local=h['pose_local_reference_hist'];pose=h['pose_redcho_estimate_hist'];truth=local.mean(axis=2)
+    for i in range(6):
+        axs[0,0].plot(t,local[0,0,i],color=colors[i],ls=':',alpha=.5)
+        axs[0,0].plot(t,pose[0,0,i],color=colors[i],label=f'cf{i+1}')
+        axs[0,1].plot(t,scenario.GROUND_COM_HEIGHT+local[2,0,i],color=colors[i],ls=':',alpha=.5)
+        axs[0,1].plot(t,scenario.GROUND_COM_HEIGHT+pose[2,0,i],color=colors[i])
+    axs[0,0].plot(t,truth[0,0],'k--',lw=1.5,label='True reference average')
+    axs[0,1].plot(t,scenario.GROUND_COM_HEIGHT+truth[2,0],'k--',lw=1.5,label='True reference average')
+    style(axs[0,0],'(a) Dotted local positions; solid REDCHO estimates','Forward displacement reference [m]')
+    style(axs[0,1],'(b) Distinct local height proposals; shared estimate','Height reference [m]')
+    axs[0,1].set_xlim(2.8,8.);axs[0,0].legend(fontsize=7,ncol=2);axs[0,1].legend(fontsize=8)
+    for order in range(3):
+        axs[1,0].semilogy(t,np.maximum(h['pose_redcho_order_error_hist'][order],1e-12),label=f'Order {order}')
+    style(axs[1,0],'(c) Position REDCHO estimation errors','Mean estimation error');axs[1,0].legend(fontsize=8)
+    active=(h['obstacle_qp_margin_hist']<=1e-5)&(h['obstacle_free_margin_hist']<-1e-6)
+    for o in range(2):
+        axs[1,1].step(t,active[o].sum(axis=0),where='post',label=f'Obstacle {o+1}')
+    style(axs[1,1],'(d) Both obstacles require safety corrections','Agents with active obstacle constraint')
+    axs[1,1].set_ylim(-.1,6.1);axs[1,1].legend(fontsize=8)
+    finish(fig,'figure_10_pose_redcho_and_obstacles.png')
     return figs
 
 

@@ -1,4 +1,4 @@
-"""Six OS processes, each with precisely two ring-neighbor subscriptions."""
+"""Six processes; each receives REDCHO and formation data from two ring peers."""
 from launch import LaunchDescription
 from launch_ros.actions import Node
 

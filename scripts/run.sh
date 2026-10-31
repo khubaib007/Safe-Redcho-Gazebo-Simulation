@@ -20,7 +20,7 @@ case "$mode" in
     export ROS_LOG_DIR="${ROS_LOG_DIR:-$REDCHO_ROOT/log/ros}"
     export ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-42}"
     export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
-    export GZ_PARTITION="${GZ_PARTITION:-safe_redcho_velocity}"
+    export GZ_PARTITION="${GZ_PARTITION:-safe_redcho_formation}"
     case "$mode" in
       world) exec ros2 launch safe_redcho_scene arena.launch.py "$@" ;;
       agents) exec ros2 launch safe_redcho_distributed control_agents.launch.py "$@" ;;

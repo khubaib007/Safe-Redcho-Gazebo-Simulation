@@ -1,4 +1,3 @@
-# Release preparation: reject nonfinite commands and hard-row violations before motor allocation.
 """One agent's complete battery/observer/QP/geometric controller computation."""
 import numpy as np
 from safe_redcho_swarm.core.config import Params,Battery,CBF
@@ -6,6 +5,8 @@ from safe_redcho_swarm.core.battery import compute_vocv,speed_governor,voltage_a
 from safe_redcho_swarm.core.cbf_qp import solve_decentralized_hocbf_qp
 from safe_redcho_swarm.core.quadrotor import crazyflie_geometric_controller,flatness_attitude_from_force
 from .local_observer import LocalObserver
+from .pose_redcho import PoseREDCHO
+from .formation_control import apply_formation,validate_configuration
 
 from . import scenario
 
@@ -19,8 +20,9 @@ def initial_plant_state():
 
 class LocalController:
     def __init__(self,agent_id):
+        validate_configuration()
         self.agent_id=agent_id;self.i=agent_id-1
-        self.observer=LocalObserver(agent_id);self.neighbors=self.observer.neighbors
+        self.observer=LocalObserver(agent_id);self.pose_observer=PoseREDCHO(agent_id);self.neighbors=self.observer.neighbors
         self.params=Params();self.batt=Battery();self.cbf=CBF(sample_time=.01);self.dt=.01
         self.soc=INITIAL_SOC[self.i];self.Vp=0.;self.voltage=compute_vocv(INITIAL_SOC)[self.i]
         self.resistance=self.batt.R_int_nom;self.faulted=False
@@ -61,23 +63,27 @@ class LocalController:
             raw=heading*speed
         Fmax,abox=voltage_aware_accel_bound(self.voltage,self.params,self.batt,self.cbf.max_design_accel)
         outgoing=self.observer.prepare(cycle,raw)
+        self.pose_outgoing=self.pose_observer.prepare(cycle,t,self.observer.result['svf_state'])
         self.state=(p,v,R,w);self.previous=previous;self.limit=Fmax;self.bound=abox;self.finished=False
         self.diagnostics={'SoC_hist':float(self.soc),'V_batt_hist':float(self.voltage),'v_safe_hist':float(speed),
                           'raw_ref_hist':raw,'F_max_hist':float(Fmax),'u_max_hist':float(abox),
                           'model_mismatch_hist':mismatch,'disturbance_bound_hist':self.cbf.plant_mismatch_bound}
         return outgoing,abox
 
-    def finish(self,peers,bounds):
+    def formation_packet(self):
+        if self.finished:raise ValueError('Prepare before requesting a formation packet')
+        return self.pose_outgoing.copy()
+
+    def finish(self,peers,bounds,formation_peers):
         if self.finished:raise ValueError('Duplicate control completion')
         bounds=np.asarray(bounds,dtype=float)
         if bounds.shape!=(6,) or not np.isfinite(bounds).all() or np.any(bounds<=0):raise ValueError('Invalid same-cycle safety bounds')
         if abs(bounds[self.i]-self.bound)>1e-12:raise ValueError('Own safety bound disagrees with batch')
         obs=self.observer.finish(peers);p,v,R,w=self.state
-        error=v[:,self.i]-obs['svf_estimate'][:,0]
-        nominal=obs['svf_estimate'][:,1]-4.5*error-.45*np.tanh(error)
-        if self.time<scenario.FORWARD_START:
-            target,desired_velocity,desired_acceleration=scenario.startup_reference(self.time)
-            nominal=desired_acceleration+6.*(target[:,self.i]-p[:,self.i])+4.*(desired_velocity-v[:,self.i])
+        pose=self.pose_observer.finish(formation_peers)
+        nominal,formation_diagnostics=apply_formation(
+            self.agent_id,self.time,obs['svf_estimate'],pose['pose_redcho_estimate_hist'],p[:,self.i],v[:,self.i])
+        tracking_target=formation_diagnostics['flight_velocity_target_hist']
         safe,info=solve_decentralized_hocbf_qp(self.i,nominal,self.previous,p,v,bounds,np.full(6,.4),
                                              scenario.INTERAGENT_DESIGN_DISTANCE,self.obstacles,self.E,2.8,3.2,.8,1.2,self.cbf)
         if (not np.isfinite(safe).all() or not np.isfinite([info['phase1_slack'],info['max_violation']]).all()
@@ -87,13 +93,17 @@ class LocalController:
         power=self.params.c_prop*motors.sum()**1.5+self.params.P_avionics
         current=power/max(self.voltage,2.5)
         d=self.diagnostics
+        d.update(formation_diagnostics)
+        d.update(pose)
+        d['nominal_acceleration_hist']=nominal.copy()
+        d['flight_velocity_target_hist']=tracking_target
         for local,key in {'svf_state':'U_hist','svf_estimate':'Y_hist','levant_state':'U_levant_hist',
                           'levant_estimate':'Y_levant_hist','snap':'svf_snap_hist'}.items():d[key]=obs[local]
         d.update(u_safe_hist=safe,u_motors_hist=motors,P_elec_hist=float(power),I_batt_hist=float(current),
                  attitude_error_hist=float(attitude),motor_utilization_hist=float(motors.max()/max(self.limit,1e-9)),
                  accel_utilization_hist=float(np.max(np.abs(safe))/max(self.bound,1e-9)),
                  slew_utilization_hist=float(np.max(np.abs(safe-self.previous[:,self.i]))/(8*self.dt)),
-                 qp_correction_hist=float(np.linalg.norm(safe-nominal)),plant_agent_err_hist=float(np.linalg.norm(error)))
+                 qp_correction_hist=float(np.linalg.norm(safe-nominal)),plant_agent_err_hist=float(np.linalg.norm(v[:,self.i]-tracking_target)))
         for field,key in {'phase1_slack':'qp_phase1_slack_hist','max_violation':'qp_violation_hist','mode':'qp_mode_hist',
                           'row_margin':'row_actuator_margin_hist','recursive_margin':'recursive_feas_margin_hist'}.items():d[key]=info[field]
         self.soc=np.clip(self.soc-self.dt*current/(3600*self.batt.Q_nom),.01,1.)

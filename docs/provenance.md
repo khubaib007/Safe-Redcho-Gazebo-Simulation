@@ -1,12 +1,10 @@
 # Source provenance and preparation changes
 
-Edition: `velocity-v0.1.0`. These are standalone, documented snapshots prepared on
+Edition: `formation-v0.1.0`. These are standalone, documented snapshots prepared on
 31 October 2026. They are not reconstructed original Git commit histories.
 
-The velocity controller, distributed interfaces and scene were recovered from
-the workspace backup `before_formation_20261017T113100Z.tar.gz`. Shared plant,
-motor, numerical-core and visualization packages came from the current simulation
-workspace. This preserves a genuine six-process velocity-only implementation.
+The formation controller and all eight packages came from the current simulation
+workspace. The position/height bank and local formation tracking remain active.
 
 `validation/source_manifest.json` records hashes before preparation edits and,
 for the velocity edition, the archive hash. The published-source manifest records

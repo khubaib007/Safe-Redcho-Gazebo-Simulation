@@ -1,4 +1,4 @@
-# Validation status: velocity-v0.1.0
+# Validation status: formation-v0.1.0
 
 Release preparation date: 31 October 2026.
 
@@ -25,4 +25,4 @@ when a given release has only a native smoke test; the status must distinguish t
 
 ## Native release result
 
-The full 45-second headless Gazebo run passed all 6 evaluated checks. Minimum pair spacing was 0.914224 m, maximum QP violation was 5.386e-16 and Phase-I slack was 0.000e+00. Native and numerical reports remain separate. GUI rendering was not exercised by the headless native test.
+The full 45-second headless Gazebo run passed all 17 evaluated checks. Minimum pair spacing was 0.912890 m, maximum QP violation was 4.732e-15 and Phase-I slack was 0.000e+00. Native and numerical reports remain separate. GUI rendering was not exercised by the headless native test.

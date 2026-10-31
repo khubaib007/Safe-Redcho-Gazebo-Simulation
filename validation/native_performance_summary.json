@@ -1,0 +1,54 @@
+{
+  "duration": 45.0,
+  "fault_time": 17.0,
+  "fault_agent_id": 2,
+  "L_svf": 17.99272824451299,
+  "K_w": 11.020318931818037,
+  "L_ic": 0.0,
+  "L_R_star": 24.726414611363452,
+  "L": 27.43,
+  "max_svf_derivative": 4.732037116177517,
+  "levant_svf_jerk_tv_ratio": 1139.7439469275405,
+  "svf_postfault_rms": [
+    1.0995289667602842e-05,
+    0.000281025562876907,
+    0.0022893278635104175
+  ],
+  "levant_postfault_rms": [
+    0.0009542301970702997,
+    0.014001100053106114,
+    0.36197948871312263
+  ],
+  "min_obstacle_clearance": [
+    1.2963187646293761,
+    1.399461997274516
+  ],
+  "min_interagent_distance": 0.9142238653097077,
+  "min_row_margin": 0.08710585258330031,
+  "max_phase1_slack": 0.0,
+  "max_qp_violation": 5.386316392907986e-16,
+  "phase1_invocations": 0,
+  "agent_steps": 27006,
+  "max_se3_residual": 0.09803472337450733,
+  "peak_accel_slew_motor_utilization": [
+    0.525468353614826,
+    0.999335716733108,
+    0.6789345250808865
+  ],
+  "max_mean_attitude_error": 0.010225037799695908,
+  "final_observer_error": 7.273622213339966e-08,
+  "final_plant_tracking_error": 0.0001156957730452124,
+  "final_cohesion_error": 9.138425084185292e-07,
+  "max_all_phase_residual": 0.9709592677750047,
+  "plant_residual_scope": "Consecutive free-flight samples; ground contact introduces support forces",
+  "checks": {
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true,
+    "hover_before_forward": true
+  },
+  "hover_gate_height_error": 0.0002631206395160568,
+  "hover_gate_max_speed": 0.016485693758957115
+}

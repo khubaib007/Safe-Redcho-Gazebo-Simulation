@@ -1,0 +1,9 @@
+uint64 cycle
+uint8 agent_id
+bool valid
+string detail
+float64[9] svf_state
+float64[9] svf_estimate
+float64[9] levant_state
+float64[9] levant_estimate
+float64[3] snap

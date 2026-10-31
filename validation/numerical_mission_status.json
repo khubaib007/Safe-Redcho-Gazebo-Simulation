@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "variant": "velocity",
+  "cycles": 4501,
+  "duration_s": 45.0,
+  "wall_s": 34.465508288998535,
+  "checks": {
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true,
+    "hover_before_forward": true
+  },
+  "scope": "Numerical feedback only; no ROS/Gazebo execution"
+}

@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "suite": "full",
+  "checks": [
+    {
+      "command": [
+        "scripts/verify.py"
+      ],
+      "exit_code": 0,
+      "log": "00.log"
+    },
+    {
+      "command": [
+        "src/safe_redcho_distributed/test/check_ring_protocol.py"
+      ],
+      "exit_code": 0,
+      "log": "01.log"
+    },
+    {
+      "command": [
+        "src/safe_redcho_distributed/test/check_qp_failure_guards.py"
+      ],
+      "exit_code": 0,
+      "log": "02.log"
+    },
+    {
+      "command": [
+        "src/safe_redcho_distributed/test/check_coordinator_protocol.py"
+      ],
+      "exit_code": 0,
+      "log": "03.log"
+    },
+    {
+      "command": [
+        "src/safe_redcho_swarm/test/check_lockstep_protocol.py"
+      ],
+      "exit_code": 0,
+      "log": "04.log"
+    },
+    {
+      "command": [
+        "src/safe_redcho_scene/test/check_scene.py"
+      ],
+      "exit_code": 0,
+      "log": "05.log"
+    },
+    {
+      "command": [
+        "scripts/numerical.py",
+        "--duration",
+        "45",
+        "--output",
+        "$CHECKOUT/results/tests_20261031T185018_480323Z/numerical",
+        "--plots"
+      ],
+      "exit_code": 0,
+      "log": "06.log"
+    }
+  ]
+}

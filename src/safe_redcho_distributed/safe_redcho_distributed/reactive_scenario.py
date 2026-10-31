@@ -1,0 +1,32 @@
+"""Startup settings and shared geometry; forward computation is the source algorithm."""
+import numpy as np
+DT=.01
+GROUND_COM_HEIGHT=.0175
+INITIAL_SPACING=1.
+INITIAL_POSITIONS=np.array([[-3.5,-5.5+i,GROUND_COM_HEIGHT] for i in range(6)]).T
+HOVER_HEIGHT=.8
+TAKEOFF_START=3.
+TAKEOFF_END=4.8
+FORWARD_START=5.
+INTERAGENT_DISTANCE=.7
+INTERAGENT_BUFFER=.12
+INTERAGENT_DESIGN_DISTANCE=INTERAGENT_DISTANCE+INTERAGENT_BUFFER
+OBSTACLE_CLEARANCE=.5
+OBSTACLE_BUFFER=.25
+OBSTACLE_DESIGN_CLEARANCE=OBSTACLE_CLEARANCE+OBSTACLE_BUFFER
+OBSTACLE_RADIUS=.5
+OBSTACLE_CENTERS=np.array([[0.,9.],[-3.5,-1.],[.2,.2]])
+HOVER_HEIGHT_TOLERANCE=.05
+HOVER_SPEED_TOLERANCE=.05
+
+def startup_reference(t):
+    s=np.clip((t-TAKEOFF_START)/(TAKEOFF_END-TAKEOFF_START),0.,1.)
+    duration=TAKEOFF_END-TAKEOFF_START;dz=HOVER_HEIGHT-GROUND_COM_HEIGHT
+    f=10*s**3-15*s**4+6*s**5
+    fd=(30*s**2-60*s**3+30*s**4)/duration
+    fdd=(60*s-180*s**2+120*s**3)/duration**2
+    target=INITIAL_POSITIONS.copy();target[2]=GROUND_COM_HEIGHT+dz*f
+    return target,np.array([0.,0.,dz*fd]),np.array([0.,0.,dz*fdd])
+
+def phase(t):
+    return 'GROUND_HOLD' if t<TAKEOFF_START else 'TAKEOFF' if t<TAKEOFF_END else 'HOVER' if t<FORWARD_START else 'MATLAB_REACTIVE_FLIGHT'

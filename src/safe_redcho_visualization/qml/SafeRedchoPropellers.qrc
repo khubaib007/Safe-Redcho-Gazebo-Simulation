@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/SafeRedchoPropellers">
+    <file>SafeRedchoPropellers.qml</file>
+  </qresource>
+</RCC>

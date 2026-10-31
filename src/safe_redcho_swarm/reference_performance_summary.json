@@ -1,0 +1,49 @@
+{
+  "duration": 40.0,
+  "fault_time": 12.0,
+  "fault_agent_id": 2,
+  "L_svf": 17.99272824451299,
+  "K_w": 11.020318931818037,
+  "L_ic": 0.20552944568721426,
+  "L_R_star": 24.931944057050668,
+  "L": 27.43,
+  "max_svf_derivative": 0.8889238496815723,
+  "levant_svf_jerk_tv_ratio": 6458.077698745838,
+  "svf_postfault_rms": [
+    1.1402666616767829e-05,
+    0.0002914352888301297,
+    0.0023741393470738245
+  ],
+  "levant_postfault_rms": [
+    0.0009641004613778724,
+    0.01359679220377952,
+    0.31443347952448886
+  ],
+  "min_obstacle_clearance": [
+    1.3610079859092439,
+    1.3114951179608925
+  ],
+  "min_interagent_distance": 1.012473490612671,
+  "min_row_margin": 0.07458523275759521,
+  "max_phase1_slack": 0.0,
+  "max_qp_violation": 2.0122792321330962e-15,
+  "phase1_invocations": 0,
+  "agent_steps": 24006,
+  "max_se3_residual": 0.23800917679361,
+  "peak_accel_slew_motor_utilization": [
+    0.17201989651705107,
+    0.6390442218161874,
+    0.6773205377851232
+  ],
+  "max_mean_attitude_error": 0.011277785625336942,
+  "final_observer_error": 7.907018823515693e-08,
+  "final_plant_tracking_error": 0.00011923477347863339,
+  "final_cohesion_error": 9.518935019511018e-07,
+  "checks": {
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true
+  }
+}

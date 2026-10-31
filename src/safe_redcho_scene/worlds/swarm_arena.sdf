@@ -1,0 +1,635 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="safe_redcho_lockstep">
+    <gravity>0 0 -9.81</gravity>
+    <physics name="default_physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <model name="ground">
+      <static>true</static>
+      <pose>0 0 -0.05 0 0 0</pose>
+      <link name="ground_link">
+        <collision name="ground_collision">
+          <geometry>
+            <box>
+              <size>60 30 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="ground_visual">
+          <pose>0 0 0.05 0 0 0</pose>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <gui fullscreen="false">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>Bitcraze meshes — Safe REDCHO swarm</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.6 0.6 0.6</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>4 -19 17 0 0.59 1.5707963267948966</camera_pose>
+        <camera_clip>
+          <near>0.005</near>
+          <far>1000</far>
+        </camera_clip>
+      </plugin>
+      <plugin filename="GzSceneManager" name="Scene Manager">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+          <property key="x" type="int">0</property>
+          <property key="y" type="int">0</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="InteractiveViewControl" name="View control">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+          <property key="x" type="int">0</property>
+          <property key="y" type="int">0</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="CameraTracking" name="Camera tracking">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+          <property key="x" type="int">0</property>
+          <property key="y" type="int">0</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="WorldStats" name="World stats">
+        <gz-gui>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">floating</property>
+          <property type="int" key="height">100</property>
+          <property type="int" key="width">200</property>
+          <property type="int" key="x">10</property>
+          <property type="int" key="y">90</property>
+        </gz-gui>
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+        <topic>/world/safe_redcho_lockstep/stats</topic>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="cf1 propeller view">
+        <robot_name>cf1</robot_name>
+        <gz-gui>
+          <title>cf1 propellers</title>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="int">300</property>
+          <property key="height" type="int">100</property>
+          <property key="x" type="int">10</property>
+          <property key="y" type="int">210</property>
+          <property key="visible" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="cf2 propeller view">
+        <robot_name>cf2</robot_name>
+        <gz-gui>
+          <title>cf2 propellers</title>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="int">300</property>
+          <property key="height" type="int">100</property>
+          <property key="x" type="int">10</property>
+          <property key="y" type="int">210</property>
+          <property key="visible" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="cf3 propeller view">
+        <robot_name>cf3</robot_name>
+        <gz-gui>
+          <title>cf3 propellers</title>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="int">300</property>
+          <property key="height" type="int">100</property>
+          <property key="x" type="int">10</property>
+          <property key="y" type="int">210</property>
+          <property key="visible" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="cf4 propeller view">
+        <robot_name>cf4</robot_name>
+        <gz-gui>
+          <title>cf4 propellers</title>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="int">300</property>
+          <property key="height" type="int">100</property>
+          <property key="x" type="int">10</property>
+          <property key="y" type="int">210</property>
+          <property key="visible" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="cf5 propeller view">
+        <robot_name>cf5</robot_name>
+        <gz-gui>
+          <title>cf5 propellers</title>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="int">300</property>
+          <property key="height" type="int">100</property>
+          <property key="x" type="int">10</property>
+          <property key="y" type="int">210</property>
+          <property key="visible" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="cf6 propeller view">
+        <robot_name>cf6</robot_name>
+        <gz-gui>
+          <title>cf6 propellers</title>
+          <property key="state" type="string">floating</property>
+          <property key="width" type="int">300</property>
+          <property key="height" type="int">100</property>
+          <property key="x" type="int">10</property>
+          <property key="y" type="int">210</property>
+          <property key="visible" type="bool">false</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="EntityTree" name="Entity tree">
+        <gz-gui>
+          <title>Crazyflies</title>
+          <property key="state" type="string">docked</property>
+        </gz-gui>
+      </plugin>
+    </gui>
+    <model name="cf1">
+      <pose>-3.5 -5.5 0.0175 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03485</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="crazyflie_body">
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/crazyflie_body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="cf2">
+      <pose>-3.5 -4.5 0.0175 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03485</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="crazyflie_body">
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/crazyflie_body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="cf3">
+      <pose>-3.5 -3.5 0.0175 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03485</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="crazyflie_body">
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/crazyflie_body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="cf4">
+      <pose>-3.5 -2.5 0.0175 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03485</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="crazyflie_body">
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/crazyflie_body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="cf5">
+      <pose>-3.5 -1.5 0.0175 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03485</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="crazyflie_body">
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/crazyflie_body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <model name="cf6">
+      <pose>-3.5 -0.5 0.0175 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03485</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="crazyflie_body">
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/crazyflie_body.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.031 -0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/ccw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.031 0.031 0.003575 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_scene/meshes/cw_prop.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+    <plugin filename="libsafe_redcho_lockstep_system.so" name="safe_redcho_lockstep::LockstepSystem">
+      <initial_velocities>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</initial_velocities>
+    </plugin>
+    <model name="obstacle_1">
+      <static>true</static>
+      <pose>0.0 -3.5 0.2 0 0 0</pose>
+      <link name="obstacle_link">
+        <collision name="obstacle_collision">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="obstacle_visual">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <diffuse>.85 .25 .15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obstacle_2">
+      <static>true</static>
+      <pose>9.0 -1.0 0.2 0 0 0</pose>
+      <link name="obstacle_link">
+        <collision name="obstacle_collision">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="obstacle_visual">
+          <geometry>
+            <sphere>
+              <radius>0.5</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <diffuse>.85 .25 .15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+  </world>
+</sdf>

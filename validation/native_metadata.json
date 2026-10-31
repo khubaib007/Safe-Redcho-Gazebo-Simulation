@@ -1,0 +1,139 @@
+{
+  "params": {
+    "m": 0.0299,
+    "Ixx": 1.395e-05,
+    "Iyy": 1.395e-05,
+    "Izz": 2.173e-05,
+    "d": 0.03973,
+    "CT": 3.1582e-10,
+    "CD": 7.9379e-12,
+    "F_max_per_motor": 0.16,
+    "D_drag": 0.012,
+    "g": 9.81,
+    "max_tilt": 0.5235987755982988,
+    "c_prop": 28.0,
+    "P_avionics": 0.85
+  },
+  "battery": {
+    "Q_nom": 0.05,
+    "R_int_nom": 0.095,
+    "R_p": 0.075,
+    "C_p": 450.0,
+    "V_nom": 4.15,
+    "V_crit": 3.0
+  },
+  "cbf": {
+    "max_design_accel": 2.8,
+    "smoothing_weight": 2.0,
+    "accel_slew_rate": 8.0,
+    "sample_time": 0.01,
+    "plant_mismatch_bound": 0.4,
+    "strict_mismatch_bound": true,
+    "authority_h_scale": 3.0,
+    "authority_floor": 0.1,
+    "recursive_reserve": 0.0,
+    "phase1_quad_weight": 1000000.0,
+    "phase1_lin_weight": 10000.0,
+    "qp_tolerance": 1e-07,
+    "strict_feasibility": true
+  },
+  "duration": 45.0,
+  "dt": 0.01,
+  "fault_time": 17.0,
+  "fault_agent_id": 2,
+  "L_svf": 17.99272824451299,
+  "K_w": 11.020318931818037,
+  "L_ic": 0.0,
+  "L_R_star": 24.726414611363452,
+  "L": 27.43,
+  "initial_soc": [
+    1.0,
+    0.95,
+    0.9,
+    0.65,
+    0.8,
+    0.75
+  ],
+  "obstacle_centers": [
+    [
+      0.0,
+      9.0
+    ],
+    [
+      -3.5,
+      -1.0
+    ],
+    [
+      0.2,
+      0.2
+    ]
+  ],
+  "obstacle_radii": [
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.5,
+      0.5
+    ],
+    [
+      0.5,
+      0.5
+    ]
+  ],
+  "interagent_safety_distance": 0.7,
+  "obstacle_surface_clearance": 0.5,
+  "interagent_design_distance": 0.82,
+  "obstacle_design_clearance": 0.75,
+  "interagent_buffer": 0.12,
+  "obstacle_buffer": 0.25,
+  "initial_positions": [
+    [
+      -3.5,
+      -3.5,
+      -3.5,
+      -3.5,
+      -3.5,
+      -3.5
+    ],
+    [
+      -5.5,
+      -4.5,
+      -3.5,
+      -2.5,
+      -1.5,
+      -0.5
+    ],
+    [
+      0.0175,
+      0.0175,
+      0.0175,
+      0.0175,
+      0.0175,
+      0.0175
+    ]
+  ],
+  "initial_spacing": 1.0,
+  "hover_height": 0.8,
+  "reference": "Source normalized heading times SoC-governed speed; no prescribed bypass or flight position feedback",
+  "forward_start": 5.0,
+  "flight_clock_offset": 5.0,
+  "fault_flight_time": 12.0,
+  "startup_controller": "Position/velocity tracking only before flight; no flight position feedback",
+  "solver": "SciPy SLSQP; baseline QP formulation with scenario safety thresholds",
+  "plant_backend": "Gazebo Harmonic, native ten-step motor-force backend",
+  "hardware_target": "Crazyflie 2.1+; MATLAB-derived surrogate parameters",
+  "architecture": "Six independent offboard local controllers; ring REDCHO and shared safety context",
+  "initialization_physics_steps": 1,
+  "initialization_duration": 0.001,
+  "initial_state_departure": {
+    "position": 9.809999999998986e-06,
+    "velocity": 0.009810000000000001,
+    "rotation": 0.0,
+    "angular_velocity": 0.0
+  },
+  "mission_epoch_ns": 1000000,
+  "final_sim_stamp_ns": 45011000000,
+  "accepted_motor_batches": 4501
+}

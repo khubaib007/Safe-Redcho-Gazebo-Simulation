@@ -1,0 +1,26 @@
+"""Step 6: paused six-agent world; run lockstep_hover separately."""
+from pathlib import Path
+from ament_index_python.packages import get_package_share_directory, get_package_prefix
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration, PythonExpression, EnvironmentVariable
+from launch_ros.actions import Node
+
+
+def generate_launch_description():
+    share=Path(get_package_share_directory('safe_redcho_swarm'))
+    gz_launch=Path(get_package_share_directory('ros_gz_sim'))/'launch/gz_sim.launch.py'
+    plugin_dir=str(Path(get_package_prefix('safe_redcho_lockstep'))/'lib')
+    visual_plugin_dir=str(Path(get_package_prefix('safe_redcho_visualization'))/'lib')
+    headless=LaunchConfiguration('headless')
+    args=PythonExpression(["'-v 3 ' + ('-s ' if '",headless,"'.lower() == 'true' else '') + '",str(share/'worlds/six_cf_lockstep.sdf'),"'"])
+    gazebo=IncludeLaunchDescription(PythonLaunchDescriptionSource(str(gz_launch)),launch_arguments={'gz_args':args}.items())
+    bridge=Node(package='ros_gz_bridge',executable='parameter_bridge',name='safe_redcho_state_bridge',output='screen',
+                parameters=[{'config_file':str(share/'config/lockstep_bridge.yaml'),'use_sim_time':True}])
+    return LaunchDescription([
+        DeclareLaunchArgument('headless',default_value='false'),
+        SetEnvironmentVariable(name='GZ_SIM_SYSTEM_PLUGIN_PATH',value=[plugin_dir,':',EnvironmentVariable('GZ_SIM_SYSTEM_PLUGIN_PATH',default_value='')]),
+        SetEnvironmentVariable(name='GZ_GUI_PLUGIN_PATH',value=[visual_plugin_dir,':',EnvironmentVariable('GZ_GUI_PLUGIN_PATH',default_value='')]),
+        SetEnvironmentVariable(name='GZ_SIM_RESOURCE_PATH',value=[str(share.parent),':',EnvironmentVariable('GZ_SIM_RESOURCE_PATH',default_value='')]),
+        gazebo,bridge])

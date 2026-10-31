@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.16)
+cmake_policy(SET CMP0100 NEW)
+project(safe_redcho_visualization)
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(gz_gui_vendor REQUIRED)
+find_package(gz_rendering_vendor REQUIRED)
+find_package(gz_plugin_vendor REQUIRED)
+find_package(gz-gui8 REQUIRED)
+find_package(gz-rendering8 REQUIRED)
+find_package(gz-plugin2 REQUIRED COMPONENTS register)
+find_package(Qt5 REQUIRED COMPONENTS Core Quick Qml)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+add_library(SafeRedchoPropellers SHARED
+  src/SafeRedchoPropellers.cc src/SafeRedchoPropellers.hh
+  qml/SafeRedchoPropellers.qrc)
+target_compile_features(SafeRedchoPropellers PUBLIC cxx_std_17)
+ament_target_dependencies(SafeRedchoPropellers rclcpp nav_msgs std_msgs)
+target_link_libraries(SafeRedchoPropellers
+  gz-gui8::gz-gui8 gz-rendering8::gz-rendering8
+  gz-plugin2::register Qt5::Core Qt5::Quick Qt5::Qml)
+install(TARGETS SafeRedchoPropellers LIBRARY DESTINATION lib)
+ament_package()

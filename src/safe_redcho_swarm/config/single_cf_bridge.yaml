@@ -1,0 +1,10 @@
+- ros_topic_name: /clock
+  gz_topic_name: /world/safe_redcho_single/clock
+  ros_type_name: rosgraph_msgs/msg/Clock
+  gz_type_name: gz.msgs.Clock
+  direction: GZ_TO_ROS
+- ros_topic_name: /cf1/odom
+  gz_topic_name: /model/cf1/odometry
+  ros_type_name: nav_msgs/msg/Odometry
+  gz_type_name: gz.msgs.Odometry
+  direction: GZ_TO_ROS

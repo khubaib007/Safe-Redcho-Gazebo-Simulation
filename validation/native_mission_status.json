@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "requested_duration": 45.0,
+  "completed_cycles": 4501,
+  "expected_cycles": 4501,
+  "accepted_motor_batches": 4501,
+  "agent_process_ids": {
+    "5": 84497,
+    "6": 84498,
+    "4": 84496,
+    "2": 84494,
+    "1": 84493,
+    "3": 84495
+  },
+  "results_per_agent": {
+    "1": 4501,
+    "2": 4501,
+    "3": 4501,
+    "4": 4501,
+    "5": 4501,
+    "6": 4501
+  },
+  "agents": 6,
+  "directed_ring_links": 12,
+  "initial_state_departure": {
+    "position": 9.809999999998986e-06,
+    "velocity": 0.009810000000000001,
+    "rotation": 0.0,
+    "angular_velocity": 0.0
+  },
+  "mission_plant_advance": 45.01,
+  "state_log_end_time": 45.0,
+  "checks": {
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true,
+    "hover_before_forward": true
+  },
+  "error": null,
+  "ROS_DOMAIN_ID": "163",
+  "wall_duration": 123.3525114380027,
+  "scope": "Closed-loop Gazebo; six independent local battery/SVF/REDCHO/QP/geometric controllers; coordinator handles transport, stepping and diagnostics"
+}

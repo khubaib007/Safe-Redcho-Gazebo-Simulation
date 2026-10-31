@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>safe_redcho_lockstep</name><version>0.1.0</version>
+  <description>Atomic motor batches and synchronized Gazebo swarm steps</description>
+  <maintainer email="73326570+khubaib007@users.noreply.github.com">Khubaib Ahmad</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend><depend>nav_msgs</depend><depend>std_msgs</depend>
+  <depend>safe_redcho_interfaces</depend>
+  <depend>gz_sim_vendor</depend><depend>gz_plugin_vendor</depend>
+  <export><build_type>ament_cmake</build_type></export>
+  <depend>gz_transport_vendor</depend><depend>gz_msgs_vendor</depend>
+</package>

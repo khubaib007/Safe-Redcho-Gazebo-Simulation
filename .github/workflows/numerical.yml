@@ -1,0 +1,24 @@
+name: Numerical and protocol verification
+on:
+  push:
+    branches: [main, velocity]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  numerical:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install system numerical dependencies
+        run: sudo apt-get update && sudo apt-get install -y python3-numpy python3-scipy python3-matplotlib
+      - name: Run protocol checks and full mission
+        run: bash scripts/test.sh full
+      - name: Preserve test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: numerical-test-results
+          path: results/tests_*/

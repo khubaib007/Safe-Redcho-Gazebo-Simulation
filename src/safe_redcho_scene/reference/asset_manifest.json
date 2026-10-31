@@ -1,0 +1,14 @@
+{
+  "crazyflie_body.dae": {
+    "source": "meshes/collada_files/cf2_assembly.dae",
+    "sha256": "e67ace6b98ab50e2616e54fbde95e69d037bb36596448405b1988ce8ba9753b7"
+  },
+  "cw_prop.dae": {
+    "source": "meshes/collada_files/cw_prop.dae",
+    "sha256": "c4fd6e69d8e2b4bb242ad57aa7b6461fd15566f19049e4b6a5693419fa82a6b9"
+  },
+  "ccw_prop.dae": {
+    "source": "meshes/collada_files/ccw_prop.dae",
+    "sha256": "ce585b09d1df89f8c6080a271f34df5363725ea4026d929e389c76cac03012f3"
+  }
+}

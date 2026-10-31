@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="3">
+ <name>safe_redcho_scene</name><version>0.1.0</version>
+ <description>Render-only swarm arena and RViz telemetry</description>
+ <maintainer email="73326570+khubaib007@users.noreply.github.com">Khubaib Ahmad</maintainer><license>Apache-2.0</license>
+ <buildtool_depend>ament_python</buildtool_depend>
+ <exec_depend>rclpy</exec_depend><exec_depend>python3-numpy</exec_depend>
+ <exec_depend>visualization_msgs</exec_depend><exec_depend>geometry_msgs</exec_depend>
+ <exec_depend>nav_msgs</exec_depend><exec_depend>safe_redcho_distributed_interfaces</exec_depend>
+ <exec_depend>ament_index_python</exec_depend><exec_depend>launch</exec_depend><exec_depend>launch_ros</exec_depend>
+ <exec_depend>ros_gz_sim</exec_depend><exec_depend>ros_gz_bridge</exec_depend><exec_depend>rviz2</exec_depend>
+ <exec_depend>safe_redcho_swarm</exec_depend><exec_depend>safe_redcho_distributed</exec_depend><exec_depend>safe_redcho_lockstep</exec_depend>
+ <exec_depend>safe_redcho_visualization</exec_depend>
+ <export><build_type>ament_python</build_type></export>
+</package>

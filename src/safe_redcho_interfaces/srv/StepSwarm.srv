@@ -1,0 +1,15 @@
+# One atomic 10 ms actuator batch. Order: cf1, cf2, ..., cf6.
+# forces = [cf1_f1,...,cf1_f4, cf2_f1,...,cf6_f4], in newtons.
+uint64 sequence
+float64[] forces
+float64[] limits
+---
+bool success
+string status
+uint64 sequence
+builtin_interfaces/Time stamp
+nav_msgs/Odometry[] states
+float64[] applied_forces
+float64[] applied_limits
+uint32 physics_steps
+uint32 wrench_steps

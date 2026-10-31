@@ -1,0 +1,529 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="safe_redcho_single">
+    <gravity>0 0 -9.81</gravity>
+    <physics name="default_physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.85 0.9 0.95 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <light name="sun" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.2 -1</direction>
+      <cast_shadows>true</cast_shadows>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+    <model name="ground">
+      <static>true</static>
+      <pose>0 0 -0.05 0 0 0</pose>
+      <link name="ground_link">
+        <collision name="ground_collision">
+          <geometry>
+            <box>
+              <size>20 20 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="ground_visual">
+          <geometry>
+            <box>
+              <size>20 20 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.65 0.6 1</ambient>
+            <diffuse>0.6 0.65 0.6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="cf1">
+      <pose>0 0 1 0 0 0</pose>
+      <static>false</static>
+      <link name="base_link">
+        <gravity>true</gravity>
+        <inertial>
+          <mass>0.0299</mass>
+          <inertia>
+            <ixx>1.395e-5</ixx>
+            <iyy>1.395e-5</iyy>
+            <izz>2.173e-5</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="body_collision">
+          <geometry>
+            <box>
+              <size>0.09 0.09 0.03</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.04 0.03 0.0016</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.10 0.10 1</ambient>
+            <diffuse>0.08 0.10 0.10 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="battery">
+          <pose>0 0 -0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.027 0.02 0.008</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.75 0.77 0.80 1</ambient>
+            <diffuse>0.75 0.77 0.80 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="battery_label">
+          <pose>0 0 -0.0091 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.021 0.017 0.0002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.35 0.7 1</ambient>
+            <diffuse>0.1 0.35 0.7 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="mcu">
+          <pose>0.005 0 0.0014 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008 0.008 0.0012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.02 0.02 0.02 1</ambient>
+            <diffuse>0.02 0.02 0.02 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="radio">
+          <pose>-0.009 0 0.0014 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.005 0.0012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.025 0.025 0.025 1</ambient>
+            <diffuse>0.025 0.025 0.025 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="pcb_arm_0">
+          <pose>0 0 0 0 0 0.7853981633974483</pose>
+          <geometry>
+            <box>
+              <size>0.07946 0.005 0.0016</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.10 0.10 1</ambient>
+            <diffuse>0.08 0.10 0.10 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="pcb_arm_1">
+          <pose>0 0 0 0 0 -0.7853981633974483</pose>
+          <geometry>
+            <box>
+              <size>0.07946 0.005 0.0016</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.10 0.10 1</ambient>
+            <diffuse>0.08 0.10 0.10 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="front_led">
+          <pose>0.019 0 0.0018 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.002 0.003 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.10 0.05 1</ambient>
+            <diffuse>0.95 0.10 0.05 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+            <emissive>0.95 0.10 0.05 1</emissive>
+          </material>
+        </visual>
+        <visual name="rear_led">
+          <pose>-0.019 0 0.0018 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.002 0.003 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.5 0.95 1</ambient>
+            <diffuse>0.1 0.5 0.95 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+            <emissive>0.1 0.5 0.95 1</emissive>
+          </material>
+        </visual>
+        <visual name="mount_1">
+          <pose>0.028093352416541532 -0.028093352416541532 -0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0045</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.05 0.05 0.06 1</ambient>
+            <diffuse>0.05 0.05 0.06 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="motor_1">
+          <pose>0.028093352416541532 -0.028093352416541532 0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0035</radius>
+              <length>0.014</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.6 0.62 0.65 1</ambient>
+            <diffuse>0.6 0.62 0.65 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="hub_1">
+          <pose>0.028093352416541532 -0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.85 0.85 0.87 1</ambient>
+            <diffuse>0.85 0.85 0.87 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="rotor_1">
+          <pose>0.028093352416541532 -0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_swarm/meshes/propeller.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.92 1</ambient>
+            <diffuse>0.9 0.9 0.92 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="mount_2">
+          <pose>-0.028093352416541532 -0.028093352416541532 -0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0045</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.05 0.05 0.06 1</ambient>
+            <diffuse>0.05 0.05 0.06 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="motor_2">
+          <pose>-0.028093352416541532 -0.028093352416541532 0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0035</radius>
+              <length>0.014</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.6 0.62 0.65 1</ambient>
+            <diffuse>0.6 0.62 0.65 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="hub_2">
+          <pose>-0.028093352416541532 -0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.85 0.85 0.87 1</ambient>
+            <diffuse>0.85 0.85 0.87 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="rotor_2">
+          <pose>-0.028093352416541532 -0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_swarm/meshes/propeller.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.22 0.23 0.25 1</ambient>
+            <diffuse>0.22 0.23 0.25 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="mount_3">
+          <pose>-0.028093352416541532 0.028093352416541532 -0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0045</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.05 0.05 0.06 1</ambient>
+            <diffuse>0.05 0.05 0.06 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="motor_3">
+          <pose>-0.028093352416541532 0.028093352416541532 0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0035</radius>
+              <length>0.014</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.6 0.62 0.65 1</ambient>
+            <diffuse>0.6 0.62 0.65 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="hub_3">
+          <pose>-0.028093352416541532 0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.85 0.85 0.87 1</ambient>
+            <diffuse>0.85 0.85 0.87 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="rotor_3">
+          <pose>-0.028093352416541532 0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_swarm/meshes/propeller.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.22 0.23 0.25 1</ambient>
+            <diffuse>0.22 0.23 0.25 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="mount_4">
+          <pose>0.028093352416541532 0.028093352416541532 -0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0045</radius>
+              <length>0.01</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.05 0.05 0.06 1</ambient>
+            <diffuse>0.05 0.05 0.06 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="motor_4">
+          <pose>0.028093352416541532 0.028093352416541532 0.001 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0035</radius>
+              <length>0.014</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.6 0.62 0.65 1</ambient>
+            <diffuse>0.6 0.62 0.65 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="hub_4">
+          <pose>0.028093352416541532 0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.002</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.85 0.85 0.87 1</ambient>
+            <diffuse>0.85 0.85 0.87 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+        <visual name="rotor_4">
+          <pose>0.028093352416541532 0.028093352416541532 0.01 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://safe_redcho_swarm/meshes/propeller.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.9 0.9 0.92 1</ambient>
+            <diffuse>0.9 0.9 0.92 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+      </link>
+      <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+        <odom_frame>world</odom_frame>
+        <robot_base_frame>cf1/base_link</robot_base_frame>
+        <odom_publish_frequency>100</odom_publish_frequency>
+        <dimensions>3</dimensions>
+        <odom_topic>/model/cf1/odometry</odom_topic>
+        <gaussian_noise>0</gaussian_noise>
+      </plugin>
+      <plugin filename="libsafe_redcho_motor_system.so" name="safe_redcho_gazebo::MotorThrustSystem">
+        <link_name>base_link</link_name>
+        <robot_name>cf1</robot_name>
+        <drag_coefficient>0.012</drag_coefficient>
+        <max_motor_thrust>0.16</max_motor_thrust>
+        <arm_length>0.03973</arm_length>
+        <torque_ratio>0.02513425368881008</torque_ratio>
+        <state_frequency>100</state_frequency>
+        <command_timeout>0.25</command_timeout>
+      </plugin>
+    </model>
+    <gui fullscreen="false">
+      <plugin filename="MinimalScene" name="3D View">
+        <gz-gui>
+          <title>Crazyflie 2.1+ hover</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.6 0.6 0.6</ambient_light>
+        <background_color>0.85 0.9 0.95</background_color>
+        <camera_pose>0.22 -0.22 1.16 0 0.45 2.356194490192345</camera_pose>
+        <camera_clip>
+          <near>0.005</near>
+          <far>1000</far>
+        </camera_clip>
+      </plugin>
+      <plugin filename="GzSceneManager" name="Scene Manager">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+          <property key="x" type="int">0</property>
+          <property key="y" type="int">0</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="InteractiveViewControl" name="View control">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+          <property key="x" type="int">0</property>
+          <property key="y" type="int">0</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="CameraTracking" name="Camera tracking">
+        <gz-gui>
+          <property key="resizable" type="bool">false</property>
+          <property key="width" type="double">5</property>
+          <property key="height" type="double">5</property>
+          <property key="state" type="string">floating</property>
+          <property key="showTitleBar" type="bool">false</property>
+          <property key="x" type="int">0</property>
+          <property key="y" type="int">0</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="WorldControl" name="World control">
+        <gz-gui>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">floating</property>
+          <property type="int" key="height">72</property>
+          <property type="int" key="width">150</property>
+          <property type="int" key="x">10</property>
+          <property type="int" key="y">10</property>
+        </gz-gui>
+        <play_pause>true</play_pause>
+        <step>true</step>
+        <start_paused>false</start_paused>
+        <service>/world/safe_redcho_single/control</service>
+        <stats_topic>/world/safe_redcho_single/stats</stats_topic>
+      </plugin>
+      <plugin filename="WorldStats" name="World stats">
+        <gz-gui>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">floating</property>
+          <property type="int" key="height">100</property>
+          <property type="int" key="width">200</property>
+          <property type="int" key="x">10</property>
+          <property type="int" key="y">90</property>
+        </gz-gui>
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+        <topic>/world/safe_redcho_single/stats</topic>
+      </plugin>
+      <plugin filename="SafeRedchoPropellers" name="Propeller visualization">
+        <robot_name>cf1</robot_name>
+        <gz-gui>
+          <title>Propeller visualization</title>
+          <property type="string" key="state">floating</property>
+          <property type="int" key="width">300</property>
+          <property type="int" key="height">100</property>
+          <property type="int" key="x">10</property>
+          <property type="int" key="y">210</property>
+        </gz-gui>
+      </plugin>
+    </gui>
+  </world>
+</sdf>

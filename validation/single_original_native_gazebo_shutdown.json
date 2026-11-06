@@ -1,0 +1,11 @@
+{
+  "child_pid": 37451,
+  "process_group": 37451,
+  "signals": [
+    "SIGINT"
+  ],
+  "child_returncode": 0,
+  "process_group_remaining": false,
+  "stop_requested": true,
+  "GZ_PARTITION": "single_position_validation_20261106_full_final"
+}

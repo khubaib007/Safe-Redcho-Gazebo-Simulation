@@ -1,0 +1,39 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 28; 35; 44
+    Fixed Frame: world
+    Frame Rate: 30
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Floor grid
+      Enabled: true
+      Cell Size: 1
+      Plane Cell Count: 40
+      Color: 100; 110; 125
+      Reference Frame: world
+    - Class: rviz_default_plugins/MarkerArray
+      Name: Swarm telemetry
+      Enabled: true
+      Topic:
+        Value: /safe_redcho_single_sim/markers
+        Depth: 1
+        Reliability Policy: Reliable
+        Durability Policy: Transient Local
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Swarm overview
+      Distance: 24
+      Pitch: 0.85
+      Yaw: 0.4
+      Focal Point:
+        X: 3
+        Y: 2
+        Z: 0.5
+Window Geometry:
+  Width: 1100
+  Height: 800

@@ -1,4 +1,5 @@
 """Run six local controllers in numerical SE(3) feedback, without ROS."""
+import os,sys
 import argparse,json,time
 from pathlib import Path
 import numpy as np
@@ -7,6 +8,10 @@ from safe_redcho_distributed import scenario
 from safe_redcho_distributed.mission_history import allocate_history,record_global_diagnostics,mission_metadata,scenario_performance_summary
 from safe_redcho_swarm.core.config import Params
 from safe_redcho_swarm.core.quadrotor import integrate_crazyflie_se3
+
+
+if __name__=='__main__' and json.loads((Path(__file__).resolve().parents[1]/'release.json').read_text())['variant']=='single-position':
+    os.execv(sys.executable,[sys.executable,'-s','-m','safe_redcho_single_sim.offline',*[x for x in sys.argv[1:] if x!='--plots']])
 
 def run(duration,output,plots=False):
     if not np.isfinite(duration) or duration<0 or abs(duration/.01-round(duration/.01))>1e-8:

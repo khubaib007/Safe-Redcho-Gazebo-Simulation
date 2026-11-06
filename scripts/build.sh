@@ -7,4 +7,4 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export PYTHONNOUSERSITE=1
 source /opt/ros/jazzy/setup.bash
 cd "$root"
-exec /usr/bin/colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release "$@"
+exec /usr/bin/colcon build --base-paths src --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release "$@"

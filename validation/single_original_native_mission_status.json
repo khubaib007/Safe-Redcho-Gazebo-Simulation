@@ -1,0 +1,59 @@
+{
+  "status": "PASS",
+  "requested_duration": 45.0,
+  "completed_cycles": 4501,
+  "expected_cycles": 4501,
+  "accepted_motor_batches": 4501,
+  "agent_process_ids": {
+    "2": 37426,
+    "3": 37427,
+    "4": 37428,
+    "5": 37429,
+    "6": 37430,
+    "1": 37425
+  },
+  "results_per_agent": {
+    "1": 4501,
+    "2": 4501,
+    "3": 4501,
+    "4": 4501,
+    "5": 4501,
+    "6": 4501
+  },
+  "agents": 6,
+  "directed_ring_links": 12,
+  "architecture": "single_position_redcho",
+  "banks_per_agent": 1,
+  "initial_state_departure": {
+    "position": 9.809999999998986e-06,
+    "velocity": 0.009810000000000001,
+    "rotation": 0.0,
+    "angular_velocity": 0.0
+  },
+  "mission_plant_advance": 45.01,
+  "state_log_end_time": 45.0,
+  "checks": {
+    "finite": true,
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true,
+    "position_REDCHO_regularity": true,
+    "hover_before_forward": true,
+    "formation_recovered": true,
+    "common_height_recovered": true,
+    "hover_height_recovered": true,
+    "velocity_consensus_recovered": true,
+    "default_scene_progress": true,
+    "recovery_window_obstacle_clear": true,
+    "position_REDCHO_estimation": true,
+    "height_REDCHO_estimation": true,
+    "both_obstacles_in_nominal_path": true,
+    "both_obstacles_require_QP_correction": true
+  },
+  "error": null,
+  "ROS_DOMAIN_ID": "190",
+  "wall_duration": 120.96391951799978,
+  "scope": "Closed-loop Gazebo; six local controllers with ONE position REDCHO each, derivative outputs for velocity/acceleration and unchanged local HOCBF-QP; coordinator handles transport, stepping and diagnostics"
+}

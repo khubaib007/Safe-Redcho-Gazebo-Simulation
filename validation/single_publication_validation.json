@@ -1,0 +1,62 @@
+{
+  "status": "PASS_NATIVE_GAZEBO",
+  "package": "safe_redcho_single_sim",
+  "version": "0.1.0",
+  "tag": "single-position-v0.1.0",
+  "package_python_files_unchanged": 28,
+  "tests": {
+    "passed": 37,
+    "skipped": 0,
+    "existing_protocol_checks": "PASS"
+  },
+  "build": {
+    "packages": 9,
+    "status": "PASS"
+  },
+  "native": {
+    "status": "PASS",
+    "scope": "Actual Gazebo native physics and six independent single-bank ROS controllers; no hardware",
+    "ROS_DOMAIN_ID": "196",
+    "GZ_PARTITION": "single_position_validation_publish_20261106T190625Z_134179",
+    "completed_cycles": 4501,
+    "agent_csv_rows": 27006,
+    "figures": 8,
+    "wall_duration_s": 120.14556952300336,
+    "mission_checks": {
+      "finite": true,
+      "svf_derivative": true,
+      "hard_qp_feasibility": true,
+      "plant_residual": true,
+      "interagent_safety": true,
+      "obstacle_clearance": true,
+      "position_REDCHO_regularity": true,
+      "hover_before_forward": true,
+      "formation_recovered": true,
+      "common_height_recovered": true,
+      "hover_height_recovered": true,
+      "velocity_consensus_recovered": true,
+      "default_scene_progress": true,
+      "recovery_window_obstacle_clear": true,
+      "position_REDCHO_estimation": true,
+      "height_REDCHO_estimation": true,
+      "both_obstacles_in_nominal_path": true,
+      "both_obstacles_require_QP_correction": true
+    },
+    "gazebo_cleanup": {
+      "child_pid": 134235,
+      "process_group": 134235,
+      "signals": [
+        "SIGINT"
+      ],
+      "child_returncode": 0,
+      "process_group_remaining": false,
+      "stop_requested": true,
+      "GZ_PARTITION": "single_position_validation_publish_20261106T190625Z_134179"
+    }
+  },
+  "numerical_nominal": "PASS",
+  "ros_interfaces_native_plugins_doctor": "PASS",
+  "desktop_gui_validated": false,
+  "hardware_validated": false,
+  "visibility": "PRIVATE"
+}

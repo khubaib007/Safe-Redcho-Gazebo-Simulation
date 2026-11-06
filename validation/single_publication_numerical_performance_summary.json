@@ -1,0 +1,69 @@
+{
+  "architecture": "single_position_redcho",
+  "banks_per_agent": 1,
+  "duration": 45.0,
+  "max_svf_derivative": 4.732039256000411,
+  "min_interagent_distance": 0.9128914405450452,
+  "min_obstacle_clearance": [
+    1.2818076417552262,
+    1.269693854088791
+  ],
+  "max_qp_violation": 7.382983113757291e-15,
+  "max_phase1_slack": 0.0,
+  "phase1_invocations": 0,
+  "agent_steps": 27006,
+  "max_freeflight_residual": 0.2134878680782419,
+  "max_all_phase_residual": 0.9679003799999999,
+  "final_order_error": [
+    2.2039642117210362e-06,
+    0.00012017167184080333,
+    0.0009206416512630316
+  ],
+  "final_velocity_consensus_error": 0.00012347203054341468,
+  "position_regularity_max": 8.318837339881924,
+  "recovery_evaluated": true,
+  "checks": {
+    "finite": true,
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true,
+    "position_REDCHO_regularity": true,
+    "hover_before_forward": true,
+    "formation_recovered": true,
+    "common_height_recovered": true,
+    "hover_height_recovered": true,
+    "velocity_consensus_recovered": true,
+    "default_scene_progress": true,
+    "recovery_window_obstacle_clear": true,
+    "position_REDCHO_estimation": true,
+    "height_REDCHO_estimation": true,
+    "both_obstacles_in_nominal_path": true,
+    "both_obstacles_require_QP_correction": true
+  },
+  "hover_gate_height_error": 0.0013898688061450004,
+  "hover_gate_speed": 0.032866015023622235,
+  "obstacle_encounters": [
+    {
+      "obstacle": 1,
+      "active_agent_samples": 2677,
+      "nominal_reference_min_surface_clearance": 0.22448214927699395,
+      "actual_min_surface_clearance": 1.2818076417552262
+    },
+    {
+      "obstacle": 2,
+      "active_agent_samples": 2851,
+      "nominal_reference_min_surface_clearance": 0.10602355556031651,
+      "actual_min_surface_clearance": 1.269693854088791
+    }
+  ],
+  "recovery": {
+    "formation_shape_error_hist": 0.012700795019288098,
+    "height_spread_hist": 0.0037641138696087317,
+    "hover_height_error_hist": 0.0036949868828711763,
+    "velocity_spread_hist": 0.006750241082707734,
+    "minimum_x": 10.63222053687265,
+    "minimum_obstacle_clearance": 5.251445473677035
+  }
+}

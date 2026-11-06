@@ -1,10 +1,11 @@
 {
-  "name": "Safe REDCHO Formation",
-  "variant": "formation",
+  "name": "Safe REDCHO Single Position Gazebo",
+  "variant": "single-position",
   "version": "0.1.0",
-  "tag": "formation-v0.1.0",
-  "controller": "Distributed battery-aware REDCHO with local reciprocal HOCBF-QP",
+  "tag": "single-position-v0.1.0",
+  "controller": "One order-2 position REDCHO bank per agent with derivative outputs, local HOCBF-QP and native motor-level Gazebo physics",
   "agents": 6,
   "control_dt_s": 0.01,
-  "source_snapshot_date": "2026-10-31"
+  "source_snapshot_date": "2026-11-06",
+  "primary_package": "safe_redcho_single_sim"
 }

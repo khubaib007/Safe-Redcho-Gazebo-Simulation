@@ -14,6 +14,9 @@ parser.add_argument('suite', choices=['smoke', 'full'], nargs='?', default='smok
 args = parser.parse_args()
 duration = 2 if args.suite == 'smoke' else 45
 variant = json.loads((root/'release.json').read_text())['variant']
+if variant=='single-position':
+    os.execvp('bash',['bash',str(root/'scripts/test_single_native.sh'),args.suite])
+
 output = root/'results'/('native_'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S_%fZ'))
 output.mkdir(parents=True)
 env = os.environ.copy()

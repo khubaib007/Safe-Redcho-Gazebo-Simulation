@@ -7,6 +7,7 @@ out=root/'results'/('tests_'+datetime.datetime.now(datetime.timezone.utc).strfti
 tests=['src/safe_redcho_distributed/test/check_ring_protocol.py','src/safe_redcho_distributed/test/check_qp_failure_guards.py','src/safe_redcho_distributed/test/check_coordinator_protocol.py','src/safe_redcho_swarm/test/check_lockstep_protocol.py','src/safe_redcho_scene/test/check_scene.py']
 if (root/'src/safe_redcho_distributed/test/check_redcho_tracking.py').exists():tests.extend(['src/safe_redcho_distributed/test/check_redcho_tracking.py','src/safe_redcho_distributed/test/check_control_agent_protocol.py'])
 commands=[['scripts/verify.py']]+[[t] for t in tests]
+if json.loads((root/'release.json').read_text())['variant']=='single-position':commands.append(['-m','pytest','src/safe_redcho_single_sim/test','-q','-p','no:cacheprovider'])
 if args.suite=='full':commands.append(['scripts/numerical.py','--duration','45','--output',str(out/'numerical'),'--plots'])
 results=[]
 for index,command in enumerate(commands):

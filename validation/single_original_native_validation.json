@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "scope": "Actual Gazebo native physics and six independent single-bank ROS controllers; no hardware",
+  "ROS_DOMAIN_ID": "190",
+  "GZ_PARTITION": "single_position_validation_20261106_full_final",
+  "completed_cycles": 4501,
+  "agent_csv_rows": 27006,
+  "figures": 8,
+  "wall_duration_s": 122.73290179500054,
+  "mission_checks": {
+    "finite": true,
+    "svf_derivative": true,
+    "hard_qp_feasibility": true,
+    "plant_residual": true,
+    "interagent_safety": true,
+    "obstacle_clearance": true,
+    "position_REDCHO_regularity": true,
+    "hover_before_forward": true,
+    "formation_recovered": true,
+    "common_height_recovered": true,
+    "hover_height_recovered": true,
+    "velocity_consensus_recovered": true,
+    "default_scene_progress": true,
+    "recovery_window_obstacle_clear": true,
+    "position_REDCHO_estimation": true,
+    "height_REDCHO_estimation": true,
+    "both_obstacles_in_nominal_path": true,
+    "both_obstacles_require_QP_correction": true
+  },
+  "gazebo_cleanup": {
+    "child_pid": 37451,
+    "process_group": 37451,
+    "signals": [
+      "SIGINT"
+    ],
+    "child_returncode": 0,
+    "process_group_remaining": false,
+    "stop_requested": true,
+    "GZ_PARTITION": "single_position_validation_20261106_full_final"
+  }
+}

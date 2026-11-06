@@ -1,0 +1,130 @@
+{
+  "status": "PASS_NATIVE_GAZEBO",
+  "package": "safe_redcho_single_sim",
+  "version": "0.1.0",
+  "architecture": "single_position_redcho",
+  "banks_per_agent": 1,
+  "tests": {
+    "passed": 37,
+    "skipped": 0,
+    "failures": 0
+  },
+  "native": {
+    "status": "PASS",
+    "scope": "Actual Gazebo native physics and six independent single-bank ROS controllers; no hardware",
+    "ROS_DOMAIN_ID": "190",
+    "GZ_PARTITION": "single_position_validation_20261106_full_final",
+    "completed_cycles": 4501,
+    "agent_csv_rows": 27006,
+    "figures": 8,
+    "wall_duration_s": 122.73290179500054,
+    "mission_checks": {
+      "finite": true,
+      "svf_derivative": true,
+      "hard_qp_feasibility": true,
+      "plant_residual": true,
+      "interagent_safety": true,
+      "obstacle_clearance": true,
+      "position_REDCHO_regularity": true,
+      "hover_before_forward": true,
+      "formation_recovered": true,
+      "common_height_recovered": true,
+      "hover_height_recovered": true,
+      "velocity_consensus_recovered": true,
+      "default_scene_progress": true,
+      "recovery_window_obstacle_clear": true,
+      "position_REDCHO_estimation": true,
+      "height_REDCHO_estimation": true,
+      "both_obstacles_in_nominal_path": true,
+      "both_obstacles_require_QP_correction": true
+    },
+    "gazebo_cleanup": {
+      "child_pid": 37451,
+      "process_group": 37451,
+      "signals": [
+        "SIGINT"
+      ],
+      "child_returncode": 0,
+      "process_group_remaining": false,
+      "stop_requested": true,
+      "GZ_PARTITION": "single_position_validation_20261106_full_final"
+    }
+  },
+  "metrics": {
+    "architecture": "single_position_redcho",
+    "banks_per_agent": 1,
+    "duration": 45.0,
+    "max_svf_derivative": 4.73203924004329,
+    "min_interagent_distance": 0.9128755890067024,
+    "min_obstacle_clearance": [
+      1.2816570816097763,
+      1.2695064657545982
+    ],
+    "max_qp_violation": 4.288236432614667e-15,
+    "max_phase1_slack": 0.0,
+    "phase1_invocations": 0,
+    "agent_steps": 27006,
+    "max_freeflight_residual": 0.21396843930448878,
+    "max_all_phase_residual": 0.9709592677750047,
+    "final_order_error": [
+      2.203963378308575e-06,
+      0.00012017161429071505,
+      0.0009206412558259068
+    ],
+    "final_velocity_consensus_error": 0.00012369060655079148,
+    "position_regularity_max": 8.318837339881924,
+    "recovery_evaluated": true,
+    "checks": {
+      "finite": true,
+      "svf_derivative": true,
+      "hard_qp_feasibility": true,
+      "plant_residual": true,
+      "interagent_safety": true,
+      "obstacle_clearance": true,
+      "position_REDCHO_regularity": true,
+      "hover_before_forward": true,
+      "formation_recovered": true,
+      "common_height_recovered": true,
+      "hover_height_recovered": true,
+      "velocity_consensus_recovered": true,
+      "default_scene_progress": true,
+      "recovery_window_obstacle_clear": true,
+      "position_REDCHO_estimation": true,
+      "height_REDCHO_estimation": true,
+      "both_obstacles_in_nominal_path": true,
+      "both_obstacles_require_QP_correction": true
+    },
+    "hover_gate_height_error": 0.0016001931426308236,
+    "hover_gate_speed": 0.03251379426389154,
+    "obstacle_encounters": [
+      {
+        "obstacle": 1,
+        "active_agent_samples": 2677,
+        "nominal_reference_min_surface_clearance": 0.2244821377114875,
+        "actual_min_surface_clearance": 1.2816570816097763
+      },
+      {
+        "obstacle": 2,
+        "active_agent_samples": 2851,
+        "nominal_reference_min_surface_clearance": 0.10602359337782519,
+        "actual_min_surface_clearance": 1.2695064657545982
+      }
+    ],
+    "recovery": {
+      "formation_shape_error_hist": 0.012713069822066134,
+      "height_spread_hist": 0.0037664049620635964,
+      "hover_height_error_hist": 0.003697190949380147,
+      "velocity_spread_hist": 0.00675651360367871,
+      "minimum_x": 10.63218788720185,
+      "minimum_obstacle_clearance": 5.2514325376575455
+    }
+  },
+  "preservation": {
+    "original_files_verified": 139,
+    "installed_modules": 17
+  },
+  "numerical_nominal": "PASS",
+  "numerical_bounded_disturbance": "PASS",
+  "hardware_validated": false,
+  "desktop_gui_validated": false
+}

@@ -1,0 +1,20 @@
+Starting >>> safe_redcho_distributed_interfaces
+Finished <<< safe_redcho_distributed_interfaces [8.90s]
+Starting >>> safe_redcho_gazebo
+Finished <<< safe_redcho_gazebo [12.1s]
+Starting >>> safe_redcho_interfaces
+Finished <<< safe_redcho_interfaces [6.00s]
+Starting >>> safe_redcho_visualization
+Finished <<< safe_redcho_visualization [13.6s]
+Starting >>> safe_redcho_lockstep
+Finished <<< safe_redcho_lockstep [12.8s]
+Starting >>> safe_redcho_swarm
+Finished <<< safe_redcho_swarm [1.23s]
+Starting >>> safe_redcho_distributed
+Finished <<< safe_redcho_distributed [1.24s]
+Starting >>> safe_redcho_scene
+Finished <<< safe_redcho_scene [1.26s]
+Starting >>> safe_redcho_single_sim
+Finished <<< safe_redcho_single_sim [1.27s]
+
+Summary: 9 packages finished [58.4s]

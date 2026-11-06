@@ -1,0 +1,367 @@
+{
+  "architecture": "single_position_redcho",
+  "redcho_orders": [
+    "position_m",
+    "velocity_mps",
+    "acceleration_mps2"
+  ],
+  "arrays": {
+    "SoC_hist": [
+      6,
+      4501
+    ],
+    "V_batt_hist": [
+      6,
+      4501
+    ],
+    "v_safe_hist": [
+      6,
+      4501
+    ],
+    "F_max_hist": [
+      6,
+      4501
+    ],
+    "u_max_hist": [
+      6,
+      4501
+    ],
+    "model_mismatch_hist": [
+      6,
+      4501
+    ],
+    "disturbance_bound_hist": [
+      6,
+      4501
+    ],
+    "P_elec_hist": [
+      6,
+      4501
+    ],
+    "I_batt_hist": [
+      6,
+      4501
+    ],
+    "attitude_error_hist": [
+      6,
+      4501
+    ],
+    "motor_utilization_hist": [
+      6,
+      4501
+    ],
+    "accel_utilization_hist": [
+      6,
+      4501
+    ],
+    "slew_utilization_hist": [
+      6,
+      4501
+    ],
+    "qp_correction_hist": [
+      6,
+      4501
+    ],
+    "plant_agent_err_hist": [
+      6,
+      4501
+    ],
+    "qp_phase1_slack_hist": [
+      6,
+      4501
+    ],
+    "qp_violation_hist": [
+      6,
+      4501
+    ],
+    "qp_mode_hist": [
+      6,
+      4501
+    ],
+    "row_actuator_margin_hist": [
+      6,
+      4501
+    ],
+    "recursive_feas_margin_hist": [
+      6,
+      4501
+    ],
+    "formation_activation_hist": [
+      6,
+      4501
+    ],
+    "raw_ref_hist": [
+      3,
+      6,
+      4501
+    ],
+    "svf_snap_hist": [
+      3,
+      6,
+      4501
+    ],
+    "u_safe_hist": [
+      3,
+      6,
+      4501
+    ],
+    "formation_correction_hist": [
+      3,
+      6,
+      4501
+    ],
+    "formation_position_error_hist": [
+      3,
+      6,
+      4501
+    ],
+    "formation_velocity_error_hist": [
+      3,
+      6,
+      4501
+    ],
+    "nominal_acceleration_hist": [
+      3,
+      6,
+      4501
+    ],
+    "flight_velocity_target_hist": [
+      3,
+      6,
+      4501
+    ],
+    "formation_target_hist": [
+      3,
+      6,
+      4501
+    ],
+    "pose_regularity_hist": [
+      3,
+      6,
+      4501
+    ],
+    "U_hist": [
+      3,
+      3,
+      6,
+      4501
+    ],
+    "pose_local_reference_hist": [
+      3,
+      3,
+      6,
+      4501
+    ],
+    "pose_redcho_estimate_hist": [
+      3,
+      3,
+      6,
+      4501
+    ],
+    "u_motors_hist": [
+      4,
+      6,
+      4501
+    ],
+    "min_dist_hist": [
+      4501
+    ],
+    "svf_regularizer_hist": [
+      4501
+    ],
+    "redcho_observer_err_hist": [
+      4501
+    ],
+    "plant_tracking_err_hist": [
+      4501
+    ],
+    "vel_consensus_err_hist": [
+      4501
+    ],
+    "formation_shape_error_hist": [
+      4501
+    ],
+    "height_spread_hist": [
+      4501
+    ],
+    "hover_height_error_hist": [
+      4501
+    ],
+    "x_alignment_error_hist": [
+      4501
+    ],
+    "lateral_spacing_error_hist": [
+      4501
+    ],
+    "velocity_spread_hist": [
+      4501
+    ],
+    "pose_estimate_spread_hist": [
+      4501
+    ],
+    "height_estimation_error_hist": [
+      4501
+    ],
+    "p_hist": [
+      3,
+      6,
+      4501
+    ],
+    "v_hist": [
+      3,
+      6,
+      4501
+    ],
+    "v_est_hist": [
+      3,
+      6,
+      4501
+    ],
+    "v_mag_hist": [
+      6,
+      4501
+    ],
+    "min_phys_obs_dist": [
+      2,
+      4501
+    ],
+    "reference_obstacle_clearance_hist": [
+      2,
+      4501
+    ],
+    "obstacle_qp_margin_hist": [
+      2,
+      6,
+      4501
+    ],
+    "obstacle_free_margin_hist": [
+      2,
+      6,
+      4501
+    ],
+    "pose_redcho_agent_error_hist": [
+      3,
+      6,
+      4501
+    ],
+    "position_redcho_order_error_hist": [
+      3,
+      4501
+    ],
+    "position_reference_average_hist": [
+      3,
+      3,
+      4501
+    ],
+    "U_avg_hist": [
+      3,
+      3,
+      4501
+    ],
+    "redcho_agent_err_hist": [
+      6,
+      4501
+    ],
+    "cohesion_agent_err_hist": [
+      6,
+      4501
+    ],
+    "time": [
+      4501
+    ]
+  },
+  "matrix_axes": "xyz, derivative_order, agent, time",
+  "agent_csv_columns": [
+    "time_s",
+    "agent_id",
+    "SoC_hist",
+    "V_batt_hist",
+    "v_safe_hist",
+    "F_max_hist",
+    "u_max_hist",
+    "model_mismatch_hist",
+    "disturbance_bound_hist",
+    "P_elec_hist",
+    "I_batt_hist",
+    "attitude_error_hist",
+    "motor_utilization_hist",
+    "accel_utilization_hist",
+    "slew_utilization_hist",
+    "qp_correction_hist",
+    "plant_agent_err_hist",
+    "qp_phase1_slack_hist",
+    "qp_violation_hist",
+    "qp_mode_hist",
+    "row_actuator_margin_hist",
+    "recursive_feas_margin_hist",
+    "formation_activation_hist",
+    "raw_ref_hist[0]",
+    "raw_ref_hist[1]",
+    "raw_ref_hist[2]",
+    "svf_snap_hist[0]",
+    "svf_snap_hist[1]",
+    "svf_snap_hist[2]",
+    "u_safe_hist[0]",
+    "u_safe_hist[1]",
+    "u_safe_hist[2]",
+    "formation_correction_hist[0]",
+    "formation_correction_hist[1]",
+    "formation_correction_hist[2]",
+    "formation_position_error_hist[0]",
+    "formation_position_error_hist[1]",
+    "formation_position_error_hist[2]",
+    "formation_velocity_error_hist[0]",
+    "formation_velocity_error_hist[1]",
+    "formation_velocity_error_hist[2]",
+    "nominal_acceleration_hist[0]",
+    "nominal_acceleration_hist[1]",
+    "nominal_acceleration_hist[2]",
+    "flight_velocity_target_hist[0]",
+    "flight_velocity_target_hist[1]",
+    "flight_velocity_target_hist[2]",
+    "formation_target_hist[0]",
+    "formation_target_hist[1]",
+    "formation_target_hist[2]",
+    "pose_regularity_hist[0]",
+    "pose_regularity_hist[1]",
+    "pose_regularity_hist[2]",
+    "U_hist[0,0]",
+    "U_hist[0,1]",
+    "U_hist[0,2]",
+    "U_hist[1,0]",
+    "U_hist[1,1]",
+    "U_hist[1,2]",
+    "U_hist[2,0]",
+    "U_hist[2,1]",
+    "U_hist[2,2]",
+    "pose_local_reference_hist[0,0]",
+    "pose_local_reference_hist[0,1]",
+    "pose_local_reference_hist[0,2]",
+    "pose_local_reference_hist[1,0]",
+    "pose_local_reference_hist[1,1]",
+    "pose_local_reference_hist[1,2]",
+    "pose_local_reference_hist[2,0]",
+    "pose_local_reference_hist[2,1]",
+    "pose_local_reference_hist[2,2]",
+    "pose_redcho_estimate_hist[0,0]",
+    "pose_redcho_estimate_hist[0,1]",
+    "pose_redcho_estimate_hist[0,2]",
+    "pose_redcho_estimate_hist[1,0]",
+    "pose_redcho_estimate_hist[1,1]",
+    "pose_redcho_estimate_hist[1,2]",
+    "pose_redcho_estimate_hist[2,0]",
+    "pose_redcho_estimate_hist[2,1]",
+    "pose_redcho_estimate_hist[2,2]",
+    "u_motors_hist[0]",
+    "u_motors_hist[1]",
+    "u_motors_hist[2]",
+    "u_motors_hist[3]",
+    "p_hist[0]",
+    "p_hist[1]",
+    "p_hist[2]",
+    "v_hist[0]",
+    "v_hist[1]",
+    "v_hist[2]"
+  ],
+  "note": "No independent velocity or Levant REDCHO exists; absent arrays are not filled with zeros"
+}

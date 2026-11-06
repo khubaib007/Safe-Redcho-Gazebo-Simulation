@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>safe_redcho_single_sim</name><version>0.1.0</version>
+  <description>Distributed single-position-REDCHO Gazebo baseline with local HOCBF-QPs and motor dynamics</description>
+  <maintainer email="maintainer@example.invalid">Khubaib Ahmad</maintainer><license>Apache-2.0</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend><exec_depend>safe_redcho_swarm</exec_depend>
+  <exec_depend>safe_redcho_interfaces</exec_depend><exec_depend>safe_redcho_distributed_interfaces</exec_depend>
+  <exec_depend>safe_redcho_lockstep</exec_depend><exec_depend>safe_redcho_scene</exec_depend>
+  <exec_depend>safe_redcho_visualization</exec_depend><exec_depend>ros_gz_sim</exec_depend><exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>launch</exec_depend><exec_depend>launch_ros</exec_depend><exec_depend>ament_index_python</exec_depend>
+  <exec_depend>python3-numpy</exec_depend><exec_depend>python3-scipy</exec_depend><exec_depend>python3-matplotlib</exec_depend>
+  <exec_depend>nav_msgs</exec_depend><exec_depend>geometry_msgs</exec_depend><exec_depend>visualization_msgs</exec_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

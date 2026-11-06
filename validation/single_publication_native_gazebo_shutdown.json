@@ -1,0 +1,11 @@
+{
+  "child_pid": 134235,
+  "process_group": 134235,
+  "signals": [
+    "SIGINT"
+  ],
+  "child_returncode": 0,
+  "process_group_remaining": false,
+  "stop_requested": true,
+  "GZ_PARTITION": "single_position_validation_publish_20261106T190625Z_134179"
+}

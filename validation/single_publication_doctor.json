@@ -1,0 +1,40 @@
+{
+  "status": "PASS_LOCAL_SOFTWARE",
+  "architecture": "single_position_redcho",
+  "banks_per_agent": 1,
+  "redcho_state_shape": [
+    3,
+    3
+  ],
+  "core_sha256": {
+    "config": "783c47d6af670091d906c749d777a1db55d4c0157d72df1020a89bf1af881744",
+    "battery": "31cdabb093996ba35dd3f446f15d430f77b3e7929ca070574bd1dbd7e8d29271",
+    "reference_filters": "abb4df0dec564c809c089f9369f9e6b09c1bee9b3fd571a18292415a4064016c",
+    "redcho": "b6eebf99008fe2d98736176bcc5e56035de806cf66d222b5997eed7acdae700e",
+    "cbf_qp": "f9431298933d46d06cbcbb0247587e5fb97c3b327ca2257b37de11fed8d486f9",
+    "quadrotor": "ad8012ef756a1cd5adc5dd3498b99cee49b26c87806659d24434bcb1ac3d3e8f"
+  },
+  "worlds": [
+    {
+      "path": "/tmp/safe-redcho-simulation-publish-20261106/install/safe_redcho_single_sim/share/safe_redcho_single_sim/worlds/swarm_arena.sdf",
+      "sha256": "2419822d463608e0115d067fffb1cc5f2cee0277cc6edeed3b2b7910eb7aaf70",
+      "physics_step_s": 0.001
+    },
+    {
+      "path": "/tmp/safe-redcho-simulation-publish-20261106/install/safe_redcho_single_sim/share/safe_redcho_single_sim/worlds/swarm_closeup.sdf",
+      "sha256": "ba43defa2d3e268759b512847159f9bef7db1645e31ebe6436f56b80082a7b81",
+      "physics_step_s": 0.001
+    }
+  ],
+  "regularity_certificate": {
+    "reference_position_bound": 40.0,
+    "first_derivative_bound": 1.083750045054786,
+    "second_derivative_bound": 1.6419307110574166,
+    "third_derivative_bound": 8.71520547286875,
+    "local_regularity_bound": 9.662227420885785,
+    "disagreement_bound": 19.32445484177157,
+    "selected_L": 32.0,
+    "scope": "Continuous reference-generator bound; sampled/smoothed REDCHO requires numerical validation"
+  },
+  "scope": "Read-only source/interface/world checks; no ROS graph, Gazebo execution or physical hardware verification"
+}

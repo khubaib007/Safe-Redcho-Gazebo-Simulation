@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "original_files_verified": 139,
+  "scenario_changes_only_version_and_architecture": true,
+  "position_bank_equations_unchanged": true,
+  "worlds_unchanged": {
+    "swarm_closeup.sdf": true,
+    "swarm_arena.sdf": true
+  },
+  "installed_modules_match_source": {
+    "history.py": true,
+    "swarm_view.py": true,
+    "figures.py": true,
+    "reference.py": true,
+    "formation_control.py": true,
+    "protocol.py": true,
+    "__init__.py": true,
+    "agent.py": true,
+    "gazebo_server.py": true,
+    "gazebo_mission.py": true,
+    "pose_redcho.py": true,
+    "doctor.py": true,
+    "scenario.py": true,
+    "local_controller.py": true,
+    "coordinator.py": true,
+    "offline.py": true,
+    "launching.py": true
+  }
+}

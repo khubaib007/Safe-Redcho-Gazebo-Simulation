@@ -7,7 +7,7 @@ if [[ $# -gt 0 ]]; then shift; fi
 case "$mode" in
   numerical) exec /usr/bin/python3 scripts/numerical.py "$@" ;;
   baseline) exec /usr/bin/python3 -m safe_redcho_swarm.nodes.baseline --no-show --no-animation "$@" ;;
-  world|agents|gazebo)
+  world|agents|gazebo|simulation|doctor)
     if [[ ! -f /opt/ros/jazzy/setup.bash || ! -f install/local_setup.bash ]]; then
       echo 'ROS/build missing; see docs/installation.md.' >&2; exit 2
     fi
@@ -18,13 +18,31 @@ case "$mode" in
     source install/local_setup.bash
     source scripts/environment.sh
     export ROS_LOG_DIR="${ROS_LOG_DIR:-$REDCHO_ROOT/log/ros}"
-    export ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-42}"
+    export ROS_DOMAIN_ID="${ROS_DOMAIN_ID:-47}"
     export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
-    export GZ_PARTITION="${GZ_PARTITION:-safe_redcho_formation}"
+    export GZ_PARTITION="${GZ_PARTITION:-safe_redcho_single_sim}"
+    if [[ "$mode" == doctor ]]; then exec ros2 run safe_redcho_single_sim doctor "$@"; fi
+    if [[ "$mode" == simulation || "$mode" == world ]]; then
+      output_given=false
+      for argument in "$@"; do
+        if [[ "$argument" == output:=* ]]; then output_given=true; fi
+      done
+      if [[ "$output_given" == false ]]; then
+        set -- "$@" "output:=$REDCHO_ROOT/results/single_position_gazebo_$(date -u +%Y%m%dT%H%M%SZ)_$$"
+      fi
+    fi
+    if [[ "$mode" == simulation ]]; then exec ros2 launch safe_redcho_single_sim simulation.launch.py "$@"; fi
+    if [[ $(/usr/bin/python3 -c 'import json;print(json.load(open("release.json"))["variant"])') == single-position ]]; then
+      case "$mode" in
+        world) exec ros2 launch safe_redcho_single_sim world.launch.py "$@" ;;
+        agents) exec ros2 launch safe_redcho_single_sim agents.launch.py "$@" ;;
+        gazebo) exec ros2 run safe_redcho_single_sim gazebo_mission "$@" ;;
+      esac
+    fi
     case "$mode" in
       world) exec ros2 launch safe_redcho_scene arena.launch.py "$@" ;;
       agents) exec ros2 launch safe_redcho_distributed control_agents.launch.py "$@" ;;
       gazebo) exec ros2 run safe_redcho_distributed gazebo_mission "$@" ;;
     esac ;;
-  *) echo 'Usage: bash scripts/run.sh {numerical|baseline|world|agents|gazebo} [arguments]'; exit 2 ;;
+  *) echo 'Usage: bash scripts/run.sh {numerical|baseline|simulation|doctor|world|agents|gazebo} [arguments]'; exit 2 ;;
 esac

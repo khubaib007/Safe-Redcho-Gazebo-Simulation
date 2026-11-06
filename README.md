@@ -8,6 +8,7 @@ and a ROS 2 Jazzy / Gazebo Harmonic backend are included.
 |---|---|---|
 | Safe REDCHO Velocity | Battery-aware velocity-reference consensus and local safety QPs | [velocity-v0.1.0](https://github.com/khubaib007/safe-redcho-simulation/releases/tag/velocity-v0.1.0) |
 | Safe REDCHO Formation | A second REDCHO bank for displacement/height and formation recovery | [formation-v0.1.0](https://github.com/khubaib007/safe-redcho-simulation/releases/tag/formation-v0.1.0) |
+| Safe REDCHO Single Position | One position REDCHO bank with derivative outputs and native Gazebo physics | [single-position-v0.1.0](https://github.com/khubaib007/Safe-Redcho-Gazebo-Simulation/releases/tag/single-position-v0.1.0) |
 
 The repository starts private for review; authenticate with your GitHub account to clone it until public access is enabled.
 
@@ -101,3 +102,6 @@ Full experimental datasets, local editor indexes, builds and virtual environment
 are excluded from source. Existing datasets in the original workspaces were not
 moved or deleted. License: [Apache-2.0](LICENSE); Bitcraze mesh attribution remains
 in `src/safe_redcho_scene/licenses/BITCRAZE_LICENSE.txt`.
+
+The separate latest single-bank package and complete guide are on the
+[`single-position` branch](https://github.com/khubaib007/Safe-Redcho-Gazebo-Simulation/tree/single-position/src/safe_redcho_single_sim).
